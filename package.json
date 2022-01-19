@@ -1,0 +1,40 @@
+{
+  "name": "ibl-docs-next",
+  "version": "4.0.0",
+  "description": "Official Documentation for the Infinity Bot List Website, Discord Server, Staff Team and Companion API",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "start": "next start",
+    "build": "next build"
+  },
+  "author": "Toxic Dev",
+  "license": "MIT",
+  "dependencies": {
+    "@geist-ui/react-icons": "^1.0.1",
+    "eslint-plugin-react": "latest",
+    "eslint-plugin-react-hooks": "latest",
+    "eslint-plugin-tailwindcss": "latest",
+    "next": "^11.0.1",
+    "nextra": "^1.1.0",
+    "nextra-theme-docs": "^1.2.2",
+    "prism-react-renderer": "^1.2.1",
+    "prismjs": "^1.26.0",
+    "react": "^17.0.1",
+    "react-copy-to-clipboard": "^5.0.4",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "eslint-config-prettier": "latest",
+    "prettier": "^2.0.5"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  }
+}

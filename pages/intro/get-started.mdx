@@ -1,0 +1,26 @@
+import Bleed from 'nextra-theme-docs/bleed'
+
+# API Introduction
+Infinity Uses a RESTful API for general operations such as sending and receiving `POST` and `GET` requests.
+
+---
+
+#### Base Url
+
+[api.infinitybotlist.com](https://api.infinitybotlist.com)
+
+---
+
+## Authorization
+
+To access our API you need to authorize yourself or in this case your bot, this can be done by using your Infinity API Token which can be found in the `Owner Section` of your bots page.
+
+<Bleed>![Owner Section Screenshot](https://media.discordapp.net/attachments/832011830238248961/871632845821591562/image0.png)</Bleed>
+
+Authentication is performed with the `authorization` HTTP header:
+
+```json:title=HTTP%20Headers
+{
+  "authorization": "your-secret-token"
+}
+```
