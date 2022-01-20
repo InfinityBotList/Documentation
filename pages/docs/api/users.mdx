@@ -1,0 +1,45 @@
+import HTTPHeader from "../../../components/HTTPHeader";
+
+# Users
+
+A user represents a Account used to Access/Login to our site. 
+It is not associated with any other platform like Discord.
+However we do store some of your Discord User Info such as ID and Username.
+
+## Find One User
+
+<HTTPHeader type="GET" path="user/:user_id" />
+
+Retrieves information about a particular user based on their User ID.
+
+---
+
+## Structure
+
+| Field     | Type        | Description                                                                                         |
+| --------- | ----------- | --------------------------------------------------------------------------------------------------- |
+| nickname  | `String`    | Nickname for the User on our Website.                                                               |
+| about     | `String`    | Some information about the User.                                                                    |
+| certified_dev | `Boolean` | The users IBL Certified Dev Status.                                                               |
+| developer | `Boolean`    | The users Developer Status (Bot Dev).                                                              |
+| staff     | `Boolean`    | If the User is IBL Staff (True or False).                                                          |
+| website   | `String`     | Link to the Users Personal Website/Portfolio.                                                      |
+| github     | `String`    | Link to the Users GitHub Page or Organization.                                                     |
+
+## Example Response
+
+```json
+
+{
+  "nickname":"PrettyChillDev",
+  "about":"Just your Typical Full-Stack Dev.",
+  "certified_dev":false,
+  "staff":true,
+  "developer":true,
+  "links":{
+    "website":"https://prettychill.dev",
+    "github":"https://github.com/TheRealToxicDev"
+   }
+}
+
+```

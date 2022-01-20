@@ -1,0 +1,98 @@
+---
+title: Java
+---
+
+import Callout from 'nextra-theme-docs/callout'; 
+
+# Java
+Java Wrapper used for interaacting with the Infinity Bots API.
+
+## Intallation
+- Replace `VERSION` by the [latest release][releases]
+
+### Maven
+
+```xml
+<repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+</repository>
+```
+
+```xml
+<dependency>
+    <groupId>com.github.Zone-Infinity</groupId>
+    <artifactId>IBL4J</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+### Gradle
+
+```xml
+maven { url 'https://jitpack.io' }
+```
+
+```xml
+implementation 'com.github.Zone-Infinity:IBL4J:VERSION'
+```
+
+## Post Method
+#### IBL with bot id
+
+```java
+IBL ibl = new IBL.Builder("BOT_ID", "IBL_TOKEN");
+
+// Post only server count
+ibl.postStats(100);
+
+// Post server count and shard count
+ibl.postStats(100, 5);
+```
+
+#### IBL with jda instance
+
+```java
+// jda -> the JDA instance of your bot
+IBLClient ibl = new IBLClient.Builder(jda, "IBL_TOKEN");
+
+// Post only server count
+ibl.postStats(100);
+
+// Post server count and shard count
+ibl.postStats(100, 5);
+```
+
+### Auto Posting
+
+```java
+// jda -> the JDA instance of your bot
+IBLClient ibl = new IBLClient.Builder(jda, "IBL_TOKEN");
+
+// Post stats every 1 hour
+ibl.autoPostStats();
+
+// Post stats every (1000 * 60 * 60) milliseconds [1 hour]
+ibl.autoPostStats(1000*60*60);
+
+// Post stats every 1 TimeUnit#HOURS
+ibl.autoPostStats(1, TimeUnit.HOURS);
+```
+
+##### Custom ScheduledExecutorService for AutoPosting
+
+```java
+// executor -> Your instance of ScheduledExecutorService
+IBLClient ibl = new IBLClient.Builder(jda, "IBL_TOKEN", executor);
+```
+
+<Callout type="warning" emoji="⚠️">
+    **Note** : If you are using `Discord4J` and `Javacord` , you cannot use `IBLClient`.<br />
+     The libraries will be added soon... 
+</Callout>
+
+
+## Get method
+*Coming Soon...
+
+[releases]:https://github.com/Zone-Infinity/IBL4J/releases/ 

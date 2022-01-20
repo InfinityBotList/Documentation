@@ -1,0 +1,27 @@
+{
+  "index": {
+    "title": "Home",
+    "type": "nav",
+    "hidden": true
+  },
+  "docs": {
+    "title": "Internal",
+    "type": "nav"
+  },
+  "faqs": {
+    "title": "FAQ's",
+    "type": "nav"
+  },
+  "staff": {
+    "title": "Staff",
+    "type": "nav"
+  },
+  "server": {
+    "title": "Server",
+    "type": "nav"
+  },
+  "programs": {
+    "title": "Programs",
+    "type": "nav"
+  }
+}
