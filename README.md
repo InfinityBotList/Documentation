@@ -5,7 +5,4 @@ Discord Server, Staff Team and Companion API.
 ---
 
 ## Made With
-- Next.js
-- TailwindCSS
-- Nextra
-- Nextra Docs Theme
+[Next.js](https://nextjs.org/) | [TailwindCSS](https://tailwindcss.com/)
