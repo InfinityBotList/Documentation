@@ -1,17 +1,17 @@
-import React from "react";
-import styled from "styled-components";
-import { CopyToClipboard } from "react-copy-to-clipboard";
+import React from 'react';
+import styled from 'styled-components';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const mappings = {
   POST: {
-    color: "#78b993",
-    background: "#212133",
-    border: "#193123",
+    color: '#78b993',
+    background: '#212133',
+    border: '#193123',
   },
   GET: {
-    color: "#7979d4",
-    background: "#212133",
-    border: "#47476b",
+    color: '#7979d4',
+    background: '#212133',
+    border: '#47476b',
   },
 };
 
@@ -63,7 +63,7 @@ export default function HTTPHeader({ type, path }) {
       setTimeout(() => setCopy(false), 3000);
     }
   }, [copied]);
-  const BASE_URL = "https://api.infinitybotlist.com/";
+  const BASE_URL = 'https://api.infinitybotlist.com/';
   const fullUrl = new URL(path, BASE_URL).href;
   const url = path;
   return (
@@ -72,12 +72,12 @@ export default function HTTPHeader({ type, path }) {
         <MethodName method={type}>{type}</MethodName>
         <EndpointUrl
           dangerouslySetInnerHTML={{
-            __html: url.replace(/:[a-z_]+/g, "<b>$&</b>"),
+            __html: url.replace(/:[a-z_]+/g, '<b>$&</b>'),
           }}
         />
       </Header>
       <CopyToClipboard text={fullUrl} onCopy={() => setCopy(true)}>
-        <CopyButton method={type}>{copied ? "Copied!" : "Copy URL"}</CopyButton>
+        <CopyButton method={type}>{copied ? 'Copied!' : 'Copy URL'}</CopyButton>
       </CopyToClipboard>
     </HeaderWrapper>
   );

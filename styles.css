@@ -15,7 +15,11 @@ article > main + div a.font-semibold {
 }
 
 body {
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 300px),
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      #ffffff 300px
+    ),
     fixed 0 0 / 20px 20px radial-gradient(#d1d1d1 1px, transparent 0),
     fixed 10px 10px / 20px 20px radial-gradient(#d1d1d1 1px, transparent 0);
 }

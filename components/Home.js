@@ -64,13 +64,14 @@ export default function Page() {
           </span>{' '}
         </h1>
         <p className="max-w-lg mx-auto mt-6 text-3xl font-medium leading-tight text-center text-gray-400 sm:max-w-4xl sm:text-2xl md:text-3xl lg:text-4xl">
-          Official Documentation for the Infinity Bot List Website, Discord Server and Companion API
+          Official Documentation for the Infinity Bot List Website, Discord
+          Server and Companion API
         </p>
         <div className="max-w-xl mx-auto mt-5 sm:flex sm:justify-center md:mt-8">
           <div className="rounded-md">
             <Link href="/docs/api/about">
               <a className="flex items-center justify-center w-full px-8 py-3 font-mono text-base no-underline font-medium text-gray-600 bg-black border border-transparent border-gray-200 rounded-md bg-opacity-5 dark:bg-white dark:text-white dark:border-gray-700 dark:bg-opacity-5 betterhover:hover:bg-gray-50 betterhover:dark:hover:bg-color1 md:py-3 md:text-base md:leading-6 md:px-10">
-               → Get started
+                → Get started
               </a>
             </Link>
           </div>
@@ -78,7 +79,7 @@ export default function Page() {
           <div className="relative mt-3 rounded-md sm:mt-0 sm:ml-3">
             <Link href="https://infinitybots.gg/discord">
               <a className="flex items-center justify-center w-full px-8 py-3 font-mono text-base no-underline font-medium text-white bg-black border border-transparent border-gray-200 rounded-md bg-opacity-5 dark:bg-white dark:text-white dark:border-gray-700 dark:bg-opacity-5 betterhover:hover:bg-gray-50 betterhover:dark:hover:bg-color2 md:py-3 md:text-base md:leading-6 md:px-10">
-               → Get Support
+                → Get Support
               </a>
             </Link>
           </div>
@@ -90,7 +91,8 @@ export default function Page() {
           Infinity API!
         </p>
         <p className="mx-auto mt-4 text-lg font-medium text-gray-400 lg:max-w-3xl lg:text-xl lg:text-center">
-          Our API is designed to be modern and easy to use while being lean, responsive and insanely performant!
+          Our API is designed to be modern and easy to use while being lean,
+          responsive and insanely performant!
         </p>
         <div className="grid grid-cols-1 mt-12 gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12">
           {features.map((feature) => (

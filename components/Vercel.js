@@ -1,6 +1,9 @@
 export default function Vercel({ height = 20 }) {
   return (
-    <a href="https://vercel.com/?utm_source=millionjs&utm_campaign=oss" target="_blank">
+    <a
+      href="https://vercel.com/?utm_source=millionjs&utm_campaign=oss"
+      target="_blank"
+    >
       <svg height={height} viewBox="0 0 283 64" fill="none">
         <path
           fill="currentColor"

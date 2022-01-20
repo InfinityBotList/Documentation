@@ -24,7 +24,6 @@ export default {
             <img src="/Nextjs.png" height={20} width={20} />
           </span>
         </a>
-        
       </>
     );
   },
@@ -41,9 +40,7 @@ export default {
         <span className="ml-2 mr-2 font-extrabold hidden md:inline">
           Infinity
         </span>
-        <span className="text-color2 font-normal hidden md:inline">
-          Docs
-        </span>
+        <span className="text-color2 font-normal hidden md:inline">Docs</span>
       </>
     );
   },
