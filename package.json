@@ -1,8 +1,8 @@
 {
-  "name": "docs",
-  "version": "1.0.0",
+  "name": "infinity-docs",
+  "version": "4.0.0",
   "main": "index.js",
-  "author": "Aiden Bai",
+  "author": "Toxic Dev",
   "license": "MIT",
   "scripts": {
     "dev": "next",
