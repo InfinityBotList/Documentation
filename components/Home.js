@@ -78,7 +78,7 @@ export default function Page() {
 
           <div className="relative mt-3 rounded-md sm:mt-0 sm:ml-3">
             <Link href="https://infinitybots.gg/discord">
-              <a className="flex items-center justify-center w-full px-8 py-3 font-mono text-base no-underline font-medium text-white bg-black border border-transparent border-gray-200 rounded-md bg-opacity-5 dark:bg-white dark:text-white dark:border-gray-700 dark:bg-opacity-5 betterhover:hover:bg-gray-50 betterhover:dark:hover:bg-color2 md:py-3 md:text-base md:leading-6 md:px-10">
+              <a className="flex items-center justify-center w-full px-8 py-3 font-mono text-base no-underline font-medium text-gray-600 bg-black border border-transparent border-gray-200 rounded-md bg-opacity-5 dark:bg-white dark:text-white dark:border-gray-700 dark:bg-opacity-5 betterhover:hover:bg-gray-50 betterhover:dark:hover:bg-color2 md:py-3 md:text-base md:leading-6 md:px-10">
                 → Get Support
               </a>
             </Link>
