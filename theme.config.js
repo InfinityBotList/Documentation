@@ -16,7 +16,7 @@ export default {
         <a
           rel="noopener"
           className="w-full inline-flex items-center no-underline text-current font-semibold grayscale opacity-75 hover:opacity-100"
-          href="https://vercel.com/?utm_source=millionjs&utm_campaign=oss"
+          href="https://nextjs.org/"
           target="_blank"
         >
           <span className="mr-1">© 2022 Infinity Bot List | Powered By</span>
