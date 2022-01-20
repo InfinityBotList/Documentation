@@ -7,5 +7,10 @@ Discord Server, Staff Team and Companion API.
 
 ---
 
+## Contributors
+Please read: https://docs.infinitybotlist.com/docs/contributors/authoring
+
+---
+
 ## Made With
 [Next.js](https://nextjs.org/) | [TailwindCSS](https://tailwindcss.com/)
