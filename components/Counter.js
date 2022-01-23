@@ -10,7 +10,7 @@ export default function Counter() {
 
   return (
     <Wrapper>
-      <p>Time Elapsed: {seconds}</p>
+      <p>Time elapsed: {seconds}</p>
     </Wrapper>
   );
 }
