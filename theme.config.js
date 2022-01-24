@@ -62,7 +62,7 @@ export default {
         content="Official Documentation for the Infinity Bot List Website, Discord Server, Staff Team and API"
       />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image" content="/Banner.png" />
+      <meta name="twitter:image" content="/InfinityBotList-Banner.png" />
       <meta name="twitter:site:domain" content="docs.infinitybots.gg" />
       <meta name="twitter:url" content="https://docs.infinitybots.gg" />
       <meta name="og:title" content="Infinity Bots | Documentation" />
