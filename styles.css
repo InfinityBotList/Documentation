@@ -1,0 +1,31 @@
+@tailwind utilities;
+
+.docs-search > span {
+  width: 100%;
+}
+
+/* Hack to make the TOC links look better by adjusting kerning */
+article > main + div a.font-semibold {
+  font-weight: 500;
+  letter-spacing: -0.01rem;
+}
+
+.dark .invert-on-dark {
+  filter: invert(1) brightness(1.8);
+}
+
+body {
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      #ffffff 300px
+    ),
+    fixed 0 0 / 20px 20px radial-gradient(#d1d1d1 1px, transparent 0),
+    fixed 10px 10px / 20px 20px radial-gradient(#d1d1d1 1px, transparent 0);
+}
+
+.dark body {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #16151d 300px),
+    fixed 0 0 / 20px 20px radial-gradient(#313131 1px, transparent 0),
+    fixed 10px 10px / 20px 20px radial-gradient(#313131 1px, transparent 0);
+}

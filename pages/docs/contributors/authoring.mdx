@@ -1,0 +1,174 @@
+# Contributing
+The Infinity Bot List Documentation is made possible through contributors made by project maintainers and community members. 
+Each page corresponds to a Markdown file and can be edited via GitHub to then appear on the public site once the build completes.
+
+This site contains public-facing usage documentation, internal implementation documentation intended for contributors
+infinity staff documentation, server documentation and documentation regarding FAQS and useful info. 
+As such, the pages are divided into multiple navigation trees under the base `pages` directory:
+
+| Tree            | Description                                                                |
+| --------------- | -------------------------------------------------------------------------- |
+| `docs `         | API Implementation, Common Use Cases, Tutorials and more                |
+| `guides `       | API Implementation, Common Use Cases, Tutorials and more                   |
+| `staff `        | API Implementation, Common Use Cases, Tutorials and more                   |
+| `server `       | API Implementation, Common Use Cases, Tutorials and more                  |
+| `programs `     | API Implementation, Common Use Cases, Tutorials and More                   |
+
+
+---
+
+## Components
+We implement a variety of Built-In Features for our Contributors to use and interact with.
+
+### HTTP Header
+This is our base feature for POST and GET request examples.
+
+<br />
+
+import HTTPHeader from '../../../components/HTTPHeader';
+
+## Examples
+<HTTPHeader type="POST" path="test/path" />
+<HTTPHeader type="GET" path="test/path" />
+
+## Usage
+```markdown
+import HTTPHeader from '../../../components/HTTPHeader';
+
+<HTTPHeader type="POST" path="test/path" />
+
+<HTTPHeader type="GET" path="test/path" />
+```
+
+---
+
+### Bleed
+When wrapping your content with `<Bleed>`, it will be slightly wider than the container
+and will overflow on both sides.
+
+It providers a better reading experience when you want to present some graphical information, which normally
+looks nicer in a larger size.
+
+For example you can put text, image, video or any component inside
+or You can even make it full-bleed using `<Bleed full>`:
+
+import Bleed from 'nextra-theme-docs/bleed'
+
+## Examples
+
+<Bleed>
+  <div style={{ border: '1px solid #888', padding: '4rem 2.5rem', textAlign: 'center' }}>
+    _There is nothing to writing. All you do is sit down at a typewriter and **bleed**._
+
+    — Ernest Hemingway
+
+  </div>
+</Bleed>
+
+<Bleed>
+  <iframe 
+    width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed/o-YBDTqX_ZU" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; 
+    autoplay; 
+    clipboard-write; 
+    encrypted-media; 
+    gyroscope; 
+    picture-in-picture" 
+    allowfullscreen
+  ></iframe>
+</Bleed>
+
+### Usage
+
+```markdown
+import Bleed from 'nextra-theme-docs/bleed'
+
+<Bleed>Hey, I can use **Markdown** syntax here.</Bleed>
+
+<Bleed full>
+  ![Landscape](https://source.unsplash.com/eaxwP9J_V6s/1600x398)
+</Bleed>
+
+<Bleed full>
+  <iframe
+    src="https://codesandbox.io/embed/swr-states-4une7"
+    width="100%"
+    height="500px"
+    title="SWR-States"
+  ></iframe>
+</Bleed>
+```
+
+```markdown
+<Bleed>
+  <div style={{ border: '1px solid #888', padding: '4rem 2.5rem', textAlign: 'center' }}>
+    _There is nothing to writing. All you do is sit down at a typewriter and **bleed**._
+
+    — Ernest Hemingway
+
+  </div>
+</Bleed>
+```
+
+---
+
+## Callout
+A built-in component provided by `nextra-theme-docs`.
+
+import Callout from 'nextra-theme-docs/callout'
+
+## Example
+
+<Callout>
+  A **callout** is a short piece of text intended to attract attention.
+</Callout>
+
+## Usage
+
+### Default
+
+<Callout emoji="👾">
+  **Space Invaders** is a 1978 shoot 'em up arcade game developed by Tomohiro
+  Nishikado.
+</Callout>
+
+```markdown
+import Callout from 'nextra-theme-docs/callout'
+
+<Callout emoji="👾">
+  **Space Invaders** is a 1978 shoot 'em up arcade game developed by Tomohiro
+  Nishikado.
+</Callout>
+```
+
+### Warning
+
+<Callout type="warning" emoji="⚠️">
+  This API will be deprecated soon.
+</Callout>
+
+```markdown
+import Callout from 'nextra-theme-docs/callout'
+
+<Callout type="warning" emoji="⚠️">
+  This API will be deprecated soon.
+</Callout>
+```
+
+### Error
+
+<Callout type="error" emoji="🚫">
+  This is a dangerous feature that can cause everything to explode.
+</Callout>
+
+```markdown
+import Callout from 'nextra-theme-docs/callout'
+
+<Callout type="error" emoji="️🚫">
+  This is a dangerous feature that can cause everything to explode.
+</Callout>
+```

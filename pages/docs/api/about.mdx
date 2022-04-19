@@ -1,0 +1,40 @@
+---
+title: Intro
+---
+
+# Introduction
+
+Hey there 👋, welcome to our Official Documentation!
+
+---
+
+## Getting Help
+
+If you need some help or think you have spotted a problem with our API you can talk to us in our 
+[`#api-support`](https://discord.com/channels/758641373074423808/826363644295643136) channel in our [discord server](https://infinitybotlist.com/discord).
+
+---
+
+## API Intro
+
+Infinity uses a REST API for general operations such as sending and receiving `POST` and `GET` requests.
+
+#### Base Url
+
+[api.infinitybotlist.com](https://api.infinitybotlist.com)
+
+---
+
+## Authorization
+
+To access our API you need to authorize yourself or in this case your bot, this can be done by using your Infinity API Token which can be found in the `Owner Section` of your bots page.
+
+![Owner Section Screenshot](https://media.discordapp.net/attachments/832011830238248961/871632845821591562/image0.png)
+
+Authentication is performed with the `authorization` HTTP header:
+
+```json
+{
+  "authorization": "your-secret-token"
+}
+```

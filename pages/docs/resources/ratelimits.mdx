@@ -1,0 +1,79 @@
+---
+title: Ratelimits
+---
+
+# Ratelimits
+Our API implements a process for limiting and preventing spam requests. 
+API users that regularly hit and ignore the limit will be blocked from our platform. 
+These rate limits are in place to help prevent the abuse and overload of our services.
+
+--- 
+
+## Global Rate Limit
+
+| Route                   | Request Type    | Max Requests    | Throttle     |
+| ----------------------- | --------------- | --------------- | ------------ |
+| `*`                     | GET             | 3000/15 Mins    | 15 Min Block |
+
+---
+
+## Bot Specific Rate Limits
+
+| Route                   | Request Type    | Max Requests    | Throttle     |
+| ----------------------- | --------------- | --------------- | ------------ |
+| `/bots/stats`           | POST            | 100/5 Seconds   | 5 Sec Block  |
+| `/bots/:botID`          | GET             | 100/15 Minutes  | 15 Min Block |
+| `/bots/all`             | GET             | 3/15 Minutes    | 15 Min Block |
+
+
+---
+
+## User Specific Rate Limits
+
+| Route                   | Request Type    | Max Requests    | Throttle     |
+| ----------------------- | --------------- | --------------- | ------------ |
+| `/user/:userID`         | GET             | 3/15 Minutes    | 15 Min Block |
+
+---
+
+## Vote Specific Rate Limits
+
+Bot Specific Endpoints are subject to more Laid Back and Effective Rate Limits then others.
+
+| Route                   | Request Type    | Max Requests    | Throttle     |
+| ----------------------- | --------------- | --------------- | ------------ |
+| `/votes/:botID/:userID` | GET             | 10/15 Minutes   | 15 Min Block |
+
+---
+
+## Rate Limit Header Structure
+
+| Field                  | Type        | Description                                                                                         |
+| ---------------------- | ----------- | --------------------------------------------------------------------------------------------------- |
+| x-ratelimit-limit      | `String`    | Maximum number of Requests that can be sent.                                                        |
+| x-ratelimit-remaining  | `String`    | Number of Requests Remaining until Rate Limited.                                                    |
+| x-ratelimit-reset      | `Boolean`   | Reset the Rate Limit after it Expires (true or false).                                              |
+| retry-afer             | `String`    | Amount of time until the Rate Limit Expires. Learn more about this header [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Retry-After)  |
+
+---
+
+## Rate Limit Response Structure
+
+| Field     | Type        | Description                                                                                         |
+| --------- | ----------- | --------------------------------------------------------------------------------------------------- |
+| code      | `Number`    | The Response's HTTP Status Code.                                                                    |
+| error     | `String`    | Title of The Rate Limit Response.                                                                   |
+| message   | `String`    | Error Message for the Rate Limit Response.                                                          |
+| date      | `Date`      | Date of the Rate Limit (will Reset if Request is repeated).                                         |
+| expiresIn | `Number`    | Amount of time until the Rate Limit Expires (in MS).                                 |
+
+## Example Rate Limit Response
+```json
+{
+    code: 420,
+    error: "Enhance your Calm!",
+    message: `Woah. Slow down chief! Maximum 100 requests per 15 Minutes`,
+    date: 1649262027499,
+    expiresIn: 900000,
+}
+```

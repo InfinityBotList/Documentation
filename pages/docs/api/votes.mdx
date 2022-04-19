@@ -1,0 +1,19 @@
+import HTTPHeader from "../../../components/HTTPHeader";
+
+# Votes
+
+We offer a custom Voting System as a way for users to support their favorite bots.
+Users can currently vote for a bot every 12 hours, but this restriction may change in the future.
+
+## Voting Endpoints
+
+## Check if User has Voted
+Check if a user has Voted for your Bot in the last 6 Hours!
+
+<HTTPHeader type="GET" path="votes/:botID/:userID" />
+
+### Response 
+
+| Response        | Description                                           |
+| --------------- | ----------------------------------------------------- |
+| hasVoted        | If the user has Voted Recently (True or False)        |
