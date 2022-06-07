@@ -30,13 +30,13 @@ These rate limits are in place to help prevent the abuse and overload of our ser
 
 | Field     | Type        | Description                                                                                         |
 | --------- | ----------- | --------------------------------------------------------------------------------------------------- |
-| message   | `String`    | Error Message for the Rate Limit Response.                                                          |
+| message   | `String`    | Error Message for the Rate Limit Response. This is a constant as per below and is static                                                     |
 
 ## Example Rate Limit Response
 ```json
 {
-    message: "You're being rate limited!"
+    "message": "You're being rate limited!"
 }
 ```
 
-Clients are expected to use the ``retry-after`` header. Ratelimit responses are now cached to improve performance
+Clients are expected to use the ``retry-after`` header. Ratelimit responses are now static to improve performance
