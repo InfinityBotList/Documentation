@@ -6,6 +6,7 @@
   },
   "docs": {
     "title": "Internal",
-    "type": "nav"
+    "type": "nav",
+    "hidden": true
   }
 }
