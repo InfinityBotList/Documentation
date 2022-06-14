@@ -34,6 +34,14 @@ Fetch some information about a specific bot from our API.
 
 ---
 
+## Test Webhook
+
+<HTTPHeader type="POST" path="/webhook-test" />
+
+Allows you to test your webhook.
+
+This endpoint as of right now is prone to change, as such see [here](https://spider.infinitybotlist.com/docs#tag/System/operation/webhook_test) for the request and response you will get as this may rapidly change in the future if the site requires it. You should *never* rely on this endpoint for long running scripts.
+
 ## POST Bot Stats
 
 <HTTPHeader type="POST" path="bots/stats" />
