@@ -1,7 +1,6 @@
 {
   "name": "infinity-docs",
   "version": "5.0.0",
-  "main": "index.js",
   "author": "Toxic Dev",
   "scripts": {
     "dev": "next",
