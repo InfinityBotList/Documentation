@@ -18,7 +18,7 @@ require('prismjs/components/prism-xml-doc');
 export default function Nextra({ Component, pageProps }) {
   return (
 	<div>
-	<V4 />
+	<V4/>
 	{
 		<Component {...pageProps} />
 	}
