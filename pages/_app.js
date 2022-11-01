@@ -1,7 +1,7 @@
 import '../styles.css';
 import 'nextra-theme-docs/style.css';
 import Prism from 'prism-react-renderer/prism';
-import V4 from "../components/v4"
+import V4 from '../components/v4';
 (typeof global !== 'undefined' ? global : window).Prism = Prism;
 
 require('prismjs/components/prism-kotlin');
@@ -17,11 +17,9 @@ require('prismjs/components/prism-xml-doc');
 
 export default function Nextra({ Component, pageProps }) {
   return (
-	<div>
-	<V4/>
-	{
-		<Component {...pageProps} />
-	}
-	</div>
-  )
+    <div>
+      <V4 />
+      {<Component {...pageProps} />}
+    </div>
+  );
 }

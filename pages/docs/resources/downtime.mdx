@@ -3,20 +3,19 @@ title: Downtime
 ---
 
 # Downtime Handler
+
 Our API implements a process for checking the presence of a bot and saving its current state.
 Each time a bot goes offline and comes back online it is saved/edited in our Database as the Uptime!
 Any approved bots who are offline for more then `60%` of their time listed on our website will be automatically removed.
 
 This helps keep our website free of clutter and ensure our users can find a bot that is online and responsive when they need it!
 
---- 
+---
 
 ## Percentage Schema
 
 ```jsx
-
-let percent = bot.uptime / bot.total_uptime * 100
-
+let percent = (bot.uptime / bot.total_uptime) * 100;
 ```
 
 ---
@@ -33,10 +32,10 @@ The following actions will be executed if your bot meets the `60%` minimum
 | Send_Logs   | Message | Sends a Log of the Bots Removal to our Bot Logs Channel      |
 | Send_DM     | Message | Notifys the Owner that the Bot was removed and Why!          |
 
-
 ---
 
 ## Useful Info
+
 If you believe your bot was falsely removed as a result of our system bugging out,
 Or you were doing maintenance and would like to appeal your bots removal. Please contact
 our staff team in our [Discord Server](https://infinitybotlist.com/discord) and let them know

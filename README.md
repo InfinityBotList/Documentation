@@ -8,6 +8,7 @@ Discord Server, Staff Team and Companion API.
 ---
 
 ## Self Hosting
+
 1. Download or Fork this Repo
 2. Open the Project in a Code Editor
 3. All Docs content is located under `/pages/`
@@ -20,11 +21,13 @@ Discord Server, Staff Team and Companion API.
 ---
 
 ## Contributing
+
 Please read: https://docs.infinitybotlist.com/docs/contributors/authoring
 
 ---
 
 ## Contributors
+
 <a href="https://github.com/InfinityBotList/Documentation/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=InfinityBotList/Documentation" />
 </a>
@@ -32,4 +35,5 @@ Please read: https://docs.infinitybotlist.com/docs/contributors/authoring
 ---
 
 ## Made With
+
 [Next.js](https://nextjs.org/) | [TailwindCSS](https://tailwindcss.com/)

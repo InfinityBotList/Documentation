@@ -2,21 +2,27 @@
 title: JavaScript
 ---
 
-import HTTPHeader from '../../../components/HTTPHeader'
+import HTTPHeader from '../../../components/HTTPHeader';
 
 ## Infinity-Bots API
 
 <div align="center">
   <p>
-    <a href="https://nodei.co/npm/infinity-bots/"><img src="https://nodei.co/npm/infinity-bots.png?downloads=true&stars=true" alt="npm installnfo" /></a>
+    <a href="https://nodei.co/npm/infinity-bots/">
+      <img
+        src="https://nodei.co/npm/infinity-bots.png?downloads=true&stars=true"
+        alt="npm installnfo"
+      />
+    </a>
   </p>
 </div>
 
 This is our Official NPM Module used for Posting and Getting Stats.
 
---- 
+---
 
 ### Installation
+
 `npm i infinity-bots@latest`
 
 ---
@@ -28,17 +34,20 @@ This is our Official NPM Module used for Posting and Getting Stats.
 ---
 
 ### postBotStats()
-```jsx
-   const poster = new InfinityBots('AUTH_TOKEN', client.user.id);
 
-   await poster.postBotStats({
-      servers: client.guilds.cache.size,
-      shards: '0'
-   }).catch((err) => {
-      return console.log(`Error occured while posting stats: ${err.stack}`);
-   });
-   
-   console.log('Posted stats to Infinity Bot List!');
+```jsx
+const poster = new InfinityBots('AUTH_TOKEN', client.user.id);
+
+await poster
+  .postBotStats({
+    servers: client.guilds.cache.size,
+    shards: '0',
+  })
+  .catch((err) => {
+    return console.log(`Error occured while posting stats: ${err.stack}`);
+  });
+
+console.log('Posted stats to Infinity Bot List!');
 ```
 
 ---
@@ -47,7 +56,12 @@ This is our Official NPM Module used for Posting and Getting Stats.
 
 <div align="center">
   <p>
-    <a href="https://nodei.co/npm/ibl-autopost/"><img src="https://nodei.co/npm/ibl-autopost.png?downloads=true&stars=true" alt="npm installnfo" /></a>
+    <a href="https://nodei.co/npm/ibl-autopost/">
+      <img
+        src="https://nodei.co/npm/ibl-autopost.png?downloads=true&stars=true"
+        alt="npm installnfo"
+      />
+    </a>
   </p>
 </div>
 
@@ -55,9 +69,10 @@ This is our Official NPM Module used for posting Server and Shard Count Stats.
 
 > Note: This Module will post stats every 5 Minutes
 
---- 
+---
 
 ### Installation
+
 `npm i ibl-autopost@latest`
 
 ---
@@ -68,40 +83,41 @@ This is our Official NPM Module used for posting Server and Shard Count Stats.
 
 ---
 
-
 ### Supported Librarys
+
 - Discord.js
 - Eris
 
 ---
 
 ### Example
-```jsx
-const { InfinityAutoPoster } = require('ibl-autopost')
 
-const poster = InfinityAutoPoster('auth_token', client) // your discord.js or eris client
+```jsx
+const { InfinityAutoPoster } = require('ibl-autopost');
+
+const poster = InfinityAutoPoster('auth_token', client); // your discord.js or eris client
 
 // Optional Logger
 poster.on('posted', (stats) => {
-
-  console.log(`Posted stats to the Infinity Bot List API | ${stats.servers} servers`)
-
+  console.log(
+    `Posted stats to the Infinity Bot List API | ${stats.servers} servers`,
+  );
 });
 ```
 
 ---
 
 ### Example Error
-```jsx
-const { InfinityAutoPoster } = require('ibl-autopost')
 
-const poster = InfinityAutoPoster('auth_token', client) // your discord.js or eris client
+```jsx
+const { InfinityAutoPoster } = require('ibl-autopost');
+
+const poster = InfinityAutoPoster('auth_token', client); // your discord.js or eris client
 
 // Optional Logger
 poster.on('error', (err) => {
-
-  console.log(err)
-})
+  console.log(err);
+});
 ```
 
 ---
@@ -110,15 +126,21 @@ poster.on('error', (err) => {
 
 <div align="center">
   <p>
-    <a href="https://nodei.co/npm/infinity-bots/"><img src="https://nodei.co/npm/infinity-bots.png?downloads=true&stars=true" alt="npm installnfo" /></a>
+    <a href="https://nodei.co/npm/infinity-bots/">
+      <img
+        src="https://nodei.co/npm/infinity-bots.png?downloads=true&stars=true"
+        alt="npm installnfo"
+      />
+    </a>
   </p>
 </div>
 
 This is our Official NPM Module used for tracking Votes to a Custom Webhook.
 
---- 
+---
 
 ### Installation
+
 `npm i infinity-bots@latest`
 
 ---
@@ -130,6 +152,7 @@ This is our Official NPM Module used for tracking Votes to a Custom Webhook.
 ---
 
 ### Getting Started
+
 Interacting with your Custom Webhooks is simple.
 Follow the steps listed below and you should have no issues!
 
@@ -142,18 +165,20 @@ Follow the steps listed below and you should have no issues!
 ---
 
 ### Response Paramaters
-| Param       | Description                                                                      |
-| ----------- | -------------------------------------------------------------------------------- |
-| botID       | The Discord ID (Snowflake) for the Bot who Recieved a Vote                       |
-| userID      | The Discord ID (Snowflake) of the User who Voted                                 |
-| userName    | The Username of the User who Voted                                               |
-| count       | The Bots new Vote Count                                                          |
-| timestamp   | The Date and Time of the Vote                                                    |
-| type        | The TYPE of Request (Should always be "VOTE" or "TEST" for test Requests)        |
+
+| Param     | Description                                                               |
+| --------- | ------------------------------------------------------------------------- |
+| botID     | The Discord ID (Snowflake) for the Bot who Recieved a Vote                |
+| userID    | The Discord ID (Snowflake) of the User who Voted                          |
+| userName  | The Username of the User who Voted                                        |
+| count     | The Bots new Vote Count                                                   |
+| timestamp | The Date and Time of the Vote                                             |
+| type      | The TYPE of Request (Should always be "VOTE" or "TEST" for test Requests) |
 
 ---
 
 ### Example (Express)
+
 ```jsx
 const express = require('express')
 const Infinity = require('infinity-bots')
@@ -173,8 +198,8 @@ app.post('/votes', webhook.hookListener(async (vote, req, res) => {
           .addField('User', `${vote.userName}`, true)
           .addField('User ID', `${vote.userID}`, true
           .setTimestamp()
-            
-        await client.guilds.cache.get('Some_Server_ID').channels.cache.get('Some_Channel_ID').send({ embeds: [voteLog] }); 
+
+        await client.guilds.cache.get('Some_Server_ID').channels.cache.get('Some_Channel_ID').send({ embeds: [voteLog] });
 
 }))
 
@@ -185,13 +210,14 @@ app.listen(3000) // your port
 ---
 
 ### Example (Fastify)
+
 ```jsx
 const Infinity = require('infinity-bots');
 
 const webhook = new Infinity.Webhook('Some_Auth_Token')
 
 const voteHook = (fastify, options, done) => {
-    
+
     fastify.post("/vote", webhook.hookListener(async (vote, req, res) => {
 
         let client = req.client
@@ -203,9 +229,9 @@ const voteHook = (fastify, options, done) => {
           .addField('User', `${vote.userName}`, true)
           .addField('User ID', `${vote.userID}`, true
           .setTimestamp()
-            
-        await client.guilds.cache.get('Some_Server_ID').channels.cache.get('Some_Channel_ID').send({ embeds: [voteLog] }); 
-       
+
+        await client.guilds.cache.get('Some_Server_ID').channels.cache.get('Some_Channel_ID').send({ embeds: [voteLog] });
+
     }));
 
     done()
@@ -218,15 +244,21 @@ const voteHook = (fastify, options, done) => {
 
 <div align="center">
   <p>
-    <a href="https://nodei.co/npm/infinitybots-votes.js/"><img src="https://nodei.co/npm/infinitybots-votes.js.png?downloads=true&stars=true" alt="npm installnfo" /></a>
+    <a href="https://nodei.co/npm/infinitybots-votes.js/">
+      <img
+        src="https://nodei.co/npm/infinitybots-votes.js.png?downloads=true&stars=true"
+        alt="npm installnfo"
+      />
+    </a>
   </p>
 </div>
 
 This is our Official NPM Module used for interacting with your bots Votes.
 
---- 
+---
 
 ### Installation
+
 `npm i infinitybots-votes.js@latest`
 
 ---
@@ -240,14 +272,15 @@ This is our Official NPM Module used for interacting with your bots Votes.
 ### checkUserVoted()
 
 ###### Response Paramaters
-| Param       | Description                                                                      |
-| ----------- | -------------------------------------------------------------------------------- |
-| hasVoted    | If the User has Voted in the last 6 Hours (True or False)                        |
 
+| Param    | Description                                               |
+| -------- | --------------------------------------------------------- |
+| hasVoted | If the User has Voted in the last 6 Hours (True or False) |
 
 ---
 
 ### Example Usage
+
 ```jsx
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
@@ -259,11 +292,11 @@ const voteData = new IBLVotes()
 module.exports.run = async (client, message, args, params) => {
 
     let user = message.mentions.members.first() || client.users.cache.get(args[0]);
-  
+
     if (!user) return message.channel.send("Please provide a user to check if the have voted");
-    
+
     await voteData.checkUserVoted(client.user.id, user.id, function(data) {
-        
+
         if (data.hasVoted) {
 
           let embed = new MessageEmbed()
@@ -272,9 +305,9 @@ module.exports.run = async (client, message, args, params) => {
             .setDescription(`<@!${user.id}> has voted within the last 6 Hours!`)
 
            return message.channel.send(embeds: [embed])
-            
+
         } else {
-            
+
           let embed = new MessageEmbed()
             .setTitle('Vote Check')
             .setColor('RED')

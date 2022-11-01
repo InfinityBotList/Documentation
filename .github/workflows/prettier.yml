@@ -19,4 +19,4 @@ jobs:
         with:
           # This part is also where you can pass other options, for example:
           prettier_options: --write **/*.{js,ts,tsx,css}
-          commit_message: "🍧 chore(prettier): Made the Code Pretty!"
+          commit_message: '🍧 chore(prettier): Made the Code Pretty!'
