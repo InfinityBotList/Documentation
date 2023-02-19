@@ -3,7 +3,10 @@ import HTTPHeader from '../../../components/HTTPHeader';
 # Votes
 
 We offer a custom Voting System as a way for users to support their favorite bots.
-Users can currently vote for a bot every 12 hours, but this restriction may change in the future.
+
+Users can currently vote for a bot every 12 hours, with the exception of double vote time periods and premium bots (4 hours cooldown at this time)
+
+_Not all endpoints are documented here. See [here](https://spider.infinitybots.gg/docs#tag--Votes) for more accurate documentation regarding our voting system
 
 ## Get User Votes
 
@@ -11,9 +14,12 @@ Users can currently vote for a bot every 12 hours, but this restriction may chan
 
 ### Response
 
+_Not all keys are documented here, see [here](https://spider.infinitybots.gg/docs#get-/users/-uid-/bots/-bid-/votes) for the full list_
+
 | Response       | Description                                                                                         |
 | -------------- | --------------------------------------------------------------------------------------------------- |
 | ts             | The timestamps of a users votes. This is to avoid you having to store these yourself on your own DB |
 | last_vote_time | The time you last voted at                                                                          |
-| vote_time      | The time (in hours) a user has to wait to next vote                                                 |
 | has_voted      | If the user has Voted Recently (True or False)                                                      |
+| premium_bot    | Whether the bot has premium or not                                                                  |
+| vote_info      | Some vote-related context such as `vote_time` etc.                                                  |
