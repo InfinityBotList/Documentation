@@ -10,7 +10,7 @@ These rate limits are in place to help prevent the abuse and overload of our ser
 
 ---
 
-**As of API v5, all ratelimits including global ratelimits are dynamic and can be added/removed at _any_ time as we require**
+**As of v4, all ratelimits including global ratelimits are dynamic and can be added/removed at _any_ time as we require**
 
 - Not all endpoints may return these headers however these may still have ratelimits.
 - A number for the purpose of the below table is defined as a number stringified
@@ -19,11 +19,7 @@ These rate limits are in place to help prevent the abuse and overload of our ser
 
 | Field                                  | Type     | Description                                                                                                                                             |
 | -------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| X-Ratelimit-Bucket                     | `String` | The bucket you are going to performing the request on. Different requests have different buckets                                                        |
-| X-Ratelimit-Bucket-Reqs-Allowed-Count  | `Number` | Number of requests allowed per time interval                                                                                                            |
-| X-Ratelimit-Bucket-Reqs-Allowed-Second | `Number` | Time interval between ratelimit resets                                                                                                                  |
-| X-Ratelimit-Req-Made                   | `Number` | The number of requests you have made in the time interval                                                                                               |
-| retry-afer                             | `Number` | Amount of time until the Rate Limit Expires. Learn more about this header [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Retry-After) |
+| retry-after                             | `Number` | Amount of time until the Rate Limit Expires. Learn more about this header [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Retry-After) |
 
 ---
 
@@ -32,13 +28,15 @@ These rate limits are in place to help prevent the abuse and overload of our ser
 | Field   | Type     | Description                                                                              |
 | ------- | -------- | ---------------------------------------------------------------------------------------- |
 | message | `String` | Error Message for the Rate Limit Response. This is a constant as per below and is static |
+| error   | `Bool`   | Whether or not this is an error response. This is a constant as per below and is static   |
 
 ## Example Rate Limit Response
 
 ```json
 {
-  "message": "You're being rate limited!"
+  "message": "....!",
+  "error": true
 }
 ```
 
-Clients are expected to use the `retry-after` header. Ratelimit responses are now static to improve performance
+Clients are expected to use the `Retry-After` header. Ratelimit responses are now static to improve performance

@@ -1,5 +1,8 @@
 export default {
-  projectLink: 'https://github.com/InfinityBotList/Documentation',
+  project: {
+    link: 'https://github.com/InfinityBotList/Documentation',
+    icon: <img src="/Nextjs.png" height={20} width={20} />
+  },
   docsRepositoryBase: 'https://github.com/InfinityBotList/Documentation',
   titleSuffix: ' – Infinity Docs',
   feedbackLink: () => {
@@ -8,7 +11,9 @@ export default {
   feedbackLabels: 'feedback',
   nextLinks: true,
   prevLinks: true,
-  search: true,
+  search: {
+    loading: "Loading...",
+  },
   darkMode: true,
   footerText: () => {
     return (

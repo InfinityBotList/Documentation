@@ -15,9 +15,5 @@ require('prismjs/components/prism-markdown');
 require('prismjs/components/prism-xml-doc');
 
 export default function Nextra({ Component, pageProps }) {
-  return (
-    <div>
-      {<Component {...pageProps} />}
-    </div>
-  );
+  return <Component {...pageProps} />
 }

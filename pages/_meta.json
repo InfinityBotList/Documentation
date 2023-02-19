@@ -1,12 +1,12 @@
 {
   "index": {
     "title": "Home",
-    "type": "nav",
+    "type": "doc",
     "hidden": true
   },
   "docs": {
     "title": "Internal",
-    "type": "nav",
+    "type": "doc",
     "hidden": true
   }
 }

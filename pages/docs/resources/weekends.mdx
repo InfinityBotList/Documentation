@@ -7,23 +7,12 @@ Any votes on `Fri-Sun` will count as double with a reduced ratelimit!
 
 ---
 
-## Ratelimits
+## Vote Limits Table
 
-| Limit    | Description                   | isWeekend |
-| -------- | ----------------------------- | --------- |
-| 21600000 | 6 Hours in MS (Milliseconds)  | true      |
-| 43200000 | 12 Hours in MS (Milliseconds) | false     |
+| Limit | Description  | weekend   | premium |
+| ----- | ------------ | --------- | ------- |
+| 4     | 4 hours      | false     | true    |
+| 6     | 6 Hours      | true      | false   |
+| 12    | 12 Hours     | false     | false   |
 
 ---
-
-## Date Layout
-
-| Day       | isWeekend | Ratelimit |
-| --------- | --------- | --------- |
-| Monday    | false     | 12 Hours  |
-| Tuesday   | false     | 12 Hours  |
-| Wednesday | false     | 12 Hours  |
-| Thursday  | false     | 12 Hours  |
-| Friday    | true      | 6 Hours   |
-| Saturday  | true      | 6 Hours   |
-| Sunday    | true      | 6 Hours   |
