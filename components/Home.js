@@ -12,7 +12,7 @@ const features = [
   },
   {
     name: 'Performance',
-    description: `Our API is Made with and Backed by a Powerful, Blazing Fast Fastify Server.`,
+    description: `Our API is Made with and Backed by Go and Rust!`,
     icon: "mdi:lightning-bolt",
   },
   {
