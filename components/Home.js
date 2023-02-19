@@ -17,7 +17,7 @@ const features = [
   },
   {
     name: 'Reliable',
-    description: `We put our users first and ensure our shit is reliable. It even powers our entire site and is fully documented, no security-by-obfuscation here!`,
+    description: `We put our users first and ensure our code is reliable. It even powers our entire site and is fully documented, no security-by-obfuscation here!`,
     icon: "mdi:eye-outline",
   },
   {
