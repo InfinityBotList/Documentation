@@ -1,16 +1,20 @@
 export default {
+  useNextSeoProps() {
+    return {
+      titleTemplate: '%s - Infinity Docs'
+    }
+  },
   project: {
     link: 'https://github.com/InfinityBotList/Documentation',
     icon: <img src="/Nextjs.png" height={20} width={20} />
   },
   docsRepositoryBase: 'https://github.com/InfinityBotList/Documentation',
-  titleSuffix: ' – Infinity Docs',
-  feedbackLink: () => {
-    return 'Give us some feedback →';
+  feedback: {
+    link: () => {
+      return 'Give us some feedback →';
+    },
+    labels: 'feedback'
   },
-  feedbackLabels: 'feedback',
-  nextLinks: true,
-  prevLinks: true,
   search: {
     loading: "Loading...",
   },
