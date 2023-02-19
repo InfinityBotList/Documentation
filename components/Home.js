@@ -22,7 +22,7 @@ const features = [
   },
   {
     name: 'Performance',
-    description: `Our API is Made with and Backed by a Powerful, Blazing Fast Fastify Server.`,
+    description: `Our API is Made with and Backed by a Powerful, Blazing Fast GoLang Server.`,
     icon: LightningBoltIcon,
   },
   {
@@ -63,8 +63,7 @@ export default function Page() {
         </span>{' '}
       </h1>
       <p className="max-w-lg mx-auto mt-6 text-3xl font-medium leading-tight text-center text-gray-400 sm:max-w-4xl sm:text-2xl md:text-3xl lg:text-4xl">
-        Official Documentation for the Infinity Bot List Website, Discord
-        Server and Companion API
+        Official Documentation for Infinity Bot List
       </p>
       <div className="max-w-xl mx-auto mt-5 sm:flex sm:justify-center md:mt-8">
         <div className="rounded-md">
@@ -86,12 +85,22 @@ export default function Page() {
             
           </Link>
         </div>
+
+        <div className="relative mt-3 rounded-md sm:mt-0 sm:ml-3">
+          <Link
+            href="https://spider.infinitybots.gg/docs"
+            className="flex items-center justify-center w-full px-8 py-3 font-mono text-base no-underline font-medium text-gray-600 bg-black border border-transparent border-gray-200 rounded-md bg-opacity-5 dark:bg-white dark:text-white dark:border-gray-700 dark:bg-opacity-5 betterhover:hover:bg-gray-50 betterhover:dark:hover:bg-color2 md:py-3 md:text-base md:leading-6 md:px-10">
+            
+              → Advanced Docs
+            
+          </Link>
+        </div>
       </div>
     </div>
 
     <div className="px-4 py-16 mx-auto sm:px-6 sm:pt-20 sm:pb-24 lg:max-w-7xl lg:pt-24 lg:px-8">
       <p className="text-5xl font-extrabold tracking-tight lg:text-6xl xl:text-7xl lg:text-center dark:text-white">
-        Infinity API!
+        Features!
       </p>
       <p className="mx-auto mt-4 text-lg font-medium text-gray-400 lg:max-w-3xl lg:text-xl lg:text-center">
         Our API is designed to be modern and easy to use while being lean,

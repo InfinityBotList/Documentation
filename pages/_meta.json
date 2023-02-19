@@ -1,10 +1,47 @@
 {
   "index": {
     "title": "Home",
-    "type": "page"
+    "type": "page",
+    "href": "/"
+  },
+  "websites": {
+    "title": "Website",
+    "type": "menu",
+    "items": {
+      "mistystar": {
+        "title": "v3.0.0",
+        "href": "https://infinitybots.gg"
+      },
+      "reedwhisker": {
+        "title": "v4.0.0",
+        "href": "https://reedwhisker.infinitybots.gg"
+      }
+    }
+  },
+  "documentation": {
+    "title": "Documentation",
+    "type": "menu",
+    "items": {
+      "current": {
+        "title": "v3.0.0",
+        "href": "//docs/api/about"
+      },
+      "spider": {
+        "title": "v4.0.0",
+        "href": "https://spider.infinitybots.gg/docs"
+      }
+    }
+  },
+  "contributors": {
+    "title": "Contributors",
+    "type": "doc"
   },
   "docs": {
-    "title": "Docs",
+    "title": "Documentation",
+    "type": "doc"
+  },
+  "resources": {
+    "title": "Resources",
     "type": "doc"
   }
 }

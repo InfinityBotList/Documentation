@@ -3,56 +3,58 @@ title: JavaScript
 ---
 
 import HTTPHeader from '../../../components/HTTPHeader';
+import { Tab, Tabs } from 'nextra-theme-docs'
 
-## Infinity-Bots API
+<Tabs items={['Main', 'Auto Poster', 'Webhooks', 'Votes' ]}>
 
-<div align="center">
-  <p>
-    <a href="https://nodei.co/npm/infinity-bots/">
-      <img
-        src="https://nodei.co/npm/infinity-bots.png?downloads=true&stars=true"
-        alt="npm installnfo"
-      />
-    </a>
-  </p>
-</div>
+  <Tab>
+    ## Infinity-Bots API
+    
+    <div align="center">
+      <p>
+        <a href="https://nodei.co/npm/infinity-bots/">
+          <img
+            src="https://nodei.co/npm/infinity-bots.png?downloads=true&stars=true"
+            alt="npm installnfo"
+          />
+        </a>
+      </p>
+    </div>
+    
+    This is our Official NPM Module used for Posting and Getting Stats.
+    
+    ---
+    
+    ### Installation
+    
+    `npm i infinity-bots@latest`
+    
+    ---
+    
+    ### Links
+    
+    - Support: [Join our Discord](https://botlist.site/discord)
+    
+    ---
+    
+    ### postBotStats()
+    
+    ```jsx
+    const poster = new InfinityBots('AUTH_TOKEN', client.user.id);
+    
+    await poster.postBotStats({
+      servers: client.guilds.cache.size,
+      shards: '0',
+    }).catch((err) => {
+      return console.log(`Error occured while posting stats: ${err.stack}`);
+    });
+    
+    console.log('Posted stats to Infinity Bot List!');
+    ```
+  </Tab>
 
-This is our Official NPM Module used for Posting and Getting Stats.
-
----
-
-### Installation
-
-`npm i infinity-bots@latest`
-
----
-
-### Links
-
-- Support: [Join our Discord](https://botlist.site/discord)
-
----
-
-### postBotStats()
-
-```jsx
-const poster = new InfinityBots('AUTH_TOKEN', client.user.id);
-
-await poster
-  .postBotStats({
-    servers: client.guilds.cache.size,
-    shards: '0',
-  })
-  .catch((err) => {
-    return console.log(`Error occured while posting stats: ${err.stack}`);
-  });
-
-console.log('Posted stats to Infinity Bot List!');
-```
-
----
-
-## Auto-Poster
+  <Tab>
+    ## Auto-Poster
 
 <div align="center">
   <p>
@@ -119,10 +121,10 @@ poster.on('error', (err) => {
   console.log(err);
 });
 ```
+  </Tab>
 
----
-
-## Webhooks
+  <Tab>
+    ## Webhooks
 
 <div align="center">
   <p>
@@ -237,10 +239,9 @@ const voteHook = (fastify, options, done) => {
     done()
   };
 ```
-
----
-
-## Voting Module
+  </Tab>
+  <Tab>
+    ## Voting Module
 
 <div align="center">
   <p>
@@ -339,3 +340,5 @@ module.exports.limits = {
 }
 
 ```
+  </Tab>
+</Tabs>
