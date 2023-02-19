@@ -2,7 +2,6 @@ import {
   AdjustmentsIcon,
   CodeIcon,
   CursorClickIcon,
-  DuplicateIcon,
   EyeIcon,
   LightningBoltIcon,
   PaperAirplaneIcon,
@@ -11,8 +10,6 @@ import copy from 'copy-to-clipboard';
 import Head from 'next/head';
 import Link from 'next/link';
 import toast, { Toaster } from 'react-hot-toast';
-import Container from './Container';
-import Vercel from './Vercel';
 
 const features = [
   {
