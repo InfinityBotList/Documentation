@@ -1,4 +1,9 @@
-# Infinity Docs
+<h2 align='center'>
+  <a href="https://docs.botlist.site">
+    <img src="https://docs.botlist.site/Bannerz.png" />
+  </a>
+  <br> 
+</h2>
 
 Official Documentation Site for the Infinity Bot List Website
 Discord Server, Staff Team and Companion API.
