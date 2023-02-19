@@ -8,7 +8,6 @@
     "build": "next build"
   },
   "dependencies": {
-    "@geist-ui/react-icons": "^1.0.1",
     "eslint-plugin-react": "latest",
     "eslint-plugin-react-hooks": "latest",
     "eslint-plugin-tailwindcss": "latest",
@@ -25,7 +24,7 @@
     "tailwindcss": "^3.0.15"
   },
   "devDependencies": {
-    "@heroicons/react": "^1.0.5",
+    "@iconify-icon/react": "^1.0.5",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "autoprefixer": "^10.4.2",

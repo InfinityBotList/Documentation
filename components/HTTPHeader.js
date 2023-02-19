@@ -65,7 +65,7 @@ export default function HTTPHeader({ type, path }) {
       setTimeout(() => setCopy(false), 3000);
     }
   }, [copied]);
-  const BASE_URL = 'https://api.infinitybotlist.com/';
+  const BASE_URL = 'https://spider.infinitybots.gg/';
   const fullUrl = new URL(path, BASE_URL).href;
   const url = path;
   return (
