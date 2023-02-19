@@ -4,6 +4,7 @@
   "author": "Toxic Dev",
   "scripts": {
     "dev": "next",
+    "start": "next start",
     "build": "next build"
   },
   "dependencies": {
@@ -11,13 +12,13 @@
     "eslint-plugin-react": "latest",
     "eslint-plugin-react-hooks": "latest",
     "eslint-plugin-tailwindcss": "latest",
-    "next": "^12.0.8",
     "nextra": "^2.0.0-alpha.16",
     "nextra-theme-docs": "^2.0.0-alpha.16",
     "prism-react-renderer": "^1.2.1",
     "prismjs": "^1.26.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "*",
+    "react-dom": "*",
+    "next": ">=13",
     "react-copy-to-clipboard": "^5.0.4",
     "react-hot-toast": "^2.2.0",
     "react-lite-youtube-embed": "^2.1.3",
