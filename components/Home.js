@@ -16,8 +16,8 @@ const features = [
     icon: "mdi:lightning-bolt",
   },
   {
-    name: 'Reliable Support',
-    description: `We put our Users first and ensure you get the best treatment possible while guiding you through your issues`,
+    name: 'Reliable',
+    description: `We put our users first and ensure our shit is reliable. It even powers our entire site and is fully documented, no security-by-obfuscation here!`,
     icon: "mdi:eye-outline",
   },
   {
