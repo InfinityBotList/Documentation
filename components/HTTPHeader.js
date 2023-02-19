@@ -33,7 +33,9 @@ const MethodName = styled.h2`
   margin: 0 10px 0 0;
 `;
 
-const EndpointUrl = styled.span``;
+const EndpointUrl = styled.span`
+  color: white;
+`;
 
 const CopyButton = styled.button`
   color: ${(props) => mappings[props.method].color};

@@ -10,8 +10,8 @@ export default {
   },
   docsRepositoryBase: 'https://github.com/InfinityBotList/Documentation',
   feedback: {
-    link: () => {
-      return 'Give us some feedback →';
+    useLink: () => {
+      return 'https://github.com/InfinityBotList/Popplio';
     },
     labels: 'feedback'
   },
@@ -19,8 +19,8 @@ export default {
     loading: "Loading...",
   },
   darkMode: true,
-  footerText: () => {
-    return (
+  footer: {
+    text: (
       <>
         <a
           rel="noopener"
@@ -28,16 +28,14 @@ export default {
           href="https://nextjs.org/"
           target="_blank"
         >
-          <span className="mr-1">© 2022 Infinity Bot List | Powered By</span>
+          <span className="mr-1">© 2022 Infinity Bot List | Powered By Next.js</span>
           <span>
             <img src="/Nextjs.png" height={20} width={20} />
           </span>
         </a>
       </>
-    );
+    )
   },
-  footerEditOnGitHubLink: true, // will link to the docs repo
-  floatTOC: true,
   logo: () => {
     return (
       <>
@@ -47,14 +45,14 @@ export default {
           src="/infinity.png"
         />
         <span className="ml-2 mr-2 font-extrabold hidden md:inline">
-          Infinity
+          Infinity{" "} 
         </span>
-        <span className="text-color2 font-normal hidden md:inline">Docs</span>
+        <span className="text-color2 ml-2 font-normal hidden md:inline">{" "} Docs</span>
       </>
     );
   },
-  footerEditLink: () => {
-    return 'Edit this page on GitHub →';
+  editLink: {
+    text: <span>Edit this page on GitHub →</span>
   },
   head: (
     <>
