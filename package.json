@@ -1,7 +1,11 @@
 {
-  "name": "infinity-docs",
+  "name": "@infinity/docs",
   "version": "6.0.0",
   "author": "Toxic Dev",
+  "contributors": [
+    { "name": "Rootspring" },
+    { "name": "Cheesycod" }
+  ],
   "scripts": {
     "dev": "next",
     "start": "next start",
