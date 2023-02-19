@@ -1,49 +1,39 @@
-import {
-  AdjustmentsIcon,
-  CodeIcon,
-  CursorClickIcon,
-  DuplicateIcon,
-  EyeIcon,
-  LightningBoltIcon,
-  PaperAirplaneIcon,
-} from '@heroicons/react/outline';
+import { Icon } from "@iconify-icon/react"
 import copy from 'copy-to-clipboard';
 import Head from 'next/head';
 import Link from 'next/link';
 import toast, { Toaster } from 'react-hot-toast';
-import Container from './Container';
-import Vercel from './Vercel';
 
 const features = [
   {
     name: 'Lightweight',
     description: `We use a Lightweight, Responsive RESTful API for all POST and GET Requests.`,
-    icon: PaperAirplaneIcon,
+    icon: "mdi:paper-airplane",
   },
   {
     name: 'Performance',
-    description: `Our API is Made with and Backed by a Powerful, Blazing Fast GoLang Server.`,
-    icon: LightningBoltIcon,
+    description: `Our API is Made in Go (next/http) and Rust (axum) and it's all OSS on our github!`,
+    icon: "mdi:lightning-bolt",
   },
   {
-    name: 'Reliable Support',
-    description: `We put our Users first and ensure you get the best treatment possible while guiding you through your issues`,
-    icon: EyeIcon,
+    name: 'Reliable',
+    description: `We put our users first and ensure our code is reliable. It even powers our entire site and is fully documented, no security-by-obfuscation here!`,
+    icon: "mdi:eye-outline",
   },
   {
     name: 'Sensible API',
     description: `Our API is simple to use and provides Error Messages and Responses that even a monkey could understand 😏`,
-    icon: CodeIcon,
+    icon: "mdi:access-point-check",
   },
   {
     name: 'Developer Friendly',
     description: `We Encourage and Support all User/Developer based Contributions. Whether it be making us a Library or anything of the sort!`,
-    icon: CursorClickIcon,
+    icon: "mdi:cursor-default-click-outline",
   },
   {
     name: 'Extremely Extensible',
     description: `You can use our API to build the most complex features. Such as: Vote Logs, Vote Rewards and so much more.`,
-    icon: AdjustmentsIcon,
+    icon: "mdi:google-circles-extended",
   },
 ];
 
@@ -112,11 +102,8 @@ export default function Page() {
             className="p-10 w-auto bg-white shadow-lg rounded-xl dark:bg-opacity-5 "
             key={feature.name}
           >
-            <div>
-              <feature.icon
-                className="h-8 w-8 dark:text-white rounded-full p-1.5 dark:bg-white dark:bg-opacity-10 bg-black bg-opacity-5 text-black"
-                aria-hidden="true"
-              />
+            <div className="align-items items-center h-8 w-8 dark:text-white rounded-full p-1.5 dark:bg-white dark:bg-opacity-10 bg-black bg-opacity-5 text-black">
+              <Icon width="22px" inline={true} icon={feature.icon} />
             </div>
             <div className="mt-4">
               <h3 className="text-lg font-medium dark:text-white">
