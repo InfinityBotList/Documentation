@@ -6,9 +6,12 @@ A user represents a Account used to Access/Login to our site.
 It is not associated with any other platform like Discord.
 However we do store some of your Discord User Info such as ID and Username.
 
-## Find One User
+_Not all endpoints are documented here. See [here](https://spider.infinitybots.gg/docs#tag--Users) for more accurate documentation regarding users_
 
-<HTTPHeader type="GET" path="user/:user_id" />
+
+## Get User
+
+<HTTPHeader type="GET" path="users/:user_id" />
 
 Retrieves information about a particular user based on their User ID.
 
@@ -16,28 +19,17 @@ Retrieves information about a particular user based on their User ID.
 
 ## Structure
 
+_The structure returned by this API is quite complex and large. Please see [here]([https://spider.infinitybots.gg/docs#tag--Users](https://spider.infinitybots.gg/docs#get-/users/-id-) for a **much** more accurate documentation on User-related endpoints and a full list of all keys available for this endpoint_
+
 | Field         | Type      | Description                                    |
 | ------------- | --------- | ---------------------------------------------- |
-| nickname      | `String`  | Nickname for the User on our Website.          |
-| about         | `String`  | Some information about the User.               |
-| certified_dev | `Boolean` | The users IBL Certified Dev Status.            |
-| developer     | `Boolean` | The users Developer Status (Bot Dev).          |
+| user.         | `User`    | The user object of the user on the site.       |
+| about         | `String?`  | Some information about the User.              |
+| certified     | `Boolean` | The users IBL Certified Dev Status.            |
+| bot_developer | `Boolean` | The users Bot Developer Status.                |
 | staff         | `Boolean` | If the User is IBL Staff (True or False).      |
-| website       | `String`  | Link to the Users Personal Website/Portfolio.  |
-| github        | `String`  | Link to the Users GitHub Page or Organization. |
+| extra_links   | `Array[Link]` | The extra links of a user                  |
 
 ## Example Response
 
-```json
-{
-  "nickname": "PrettyChillDev",
-  "about": "Just your Typical Full-Stack Dev.",
-  "certified_dev": false,
-  "staff": true,
-  "developer": true,
-  "links": {
-    "website": "https://prettychill.dev",
-    "github": "https://github.com/TheRealToxicDev"
-  }
-}
-```
+See [here](https://spider.infinitybots.gg/docs#get-/users/-id-) for an example response returned by this API. Note that it is quite large and  combines data that was previously in seperate endpoints to reduce the number of required API requests.
