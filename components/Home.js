@@ -12,7 +12,7 @@ const features = [
   },
   {
     name: 'Performance',
-    description: `Our API is Made with and Backed by Go and Rust!`,
+    description: `Our API is Made in Go (next/http) and Rust (axum) and it's all OSS on our github!`,
     icon: "mdi:lightning-bolt",
   },
   {
