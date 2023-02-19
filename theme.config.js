@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { useConfig } from 'nextra-theme-docs'
 
 export default {
@@ -15,6 +16,37 @@ export default {
     'https://github.com/InfinityBotList/Documentation',
   editLink: {
     text: 'Edit this page on GitHub'
+  },
+  head: () => {
+    const { asPath } = useRouter();
+    const { frontMatter } = useConfig()
+    return <>
+      <meta name="msapplication-TileColor" content="#7289DA" />
+      <meta name="theme-color" content="#7289DA" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta httpEquiv="Content-Language" content="en" />
+      <meta
+        name="description"
+        content="Documentation for Infinity Bot List"
+      />
+      <meta
+        name="og:description"
+        content="Documentation for Infinity Bot List"
+      />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content="/Bannerz.png" />
+      <meta name="twitter:site:domain" content="docs.infinitybots.gg" />
+      <meta name="twitter:url" content="https://docs.infinitybots.gg" />
+      <meta name="og:title" content="Infinity Bots | Documentation" />
+      <meta name="og:image" content="/infinity.png" />
+      <meta name="apple-mobile-web-app-title" content="Infinity Docs" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/infinity.png" />
+      <link rel="icon" type="image/png" sizes="192x192" href="/infinity.png" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/infinity.png" />
+      <link rel="icon" type="image/png" sizes="96x96" href="/infinity.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/infinity.png" />
+      <meta name="msapplication-TileImage" content="/infinity.png" />
+    </>
   },
   logo: (
     <>
@@ -73,20 +105,20 @@ export default {
       additionalMetaTags: [
         { content: 'en', httpEquiv: 'Content-Language' },
         { content: 'Infinity Docs', name: 'apple-mobile-web-app-title' },
-        { content: '#fff', name: 'msapplication-TileColor' },
-        { content: '/ms-icon-144x144.png', name: 'msapplication-TileImage' }
+        { content: '#7289DA', name: 'msapplication-TileColor' },
+        { content: '/infinity.png', name: 'msapplication-TileImage' }
       ],
       description:
         frontMatter.description || 'Documentation for Infinity Bot List',
       openGraph: {
         images: [
-          { url: frontMatter.image || 'https://nextra.vercel.app/og.png' }
+          { url: frontMatter.image || 'https://docs.botlist.site/Bannerz.png' }
         ]
       },
       titleTemplate: '%s – Infinity Docs',
       twitter: {
         cardType: 'summary_large_image',
-        site: 'https://docs.botlist.site'
+        site: 'https://docs.botlist.site',
       }
     }
   },
