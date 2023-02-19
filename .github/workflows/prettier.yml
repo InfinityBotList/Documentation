@@ -1,6 +1,5 @@
-name: Continuous Integration
+name: Prettier
 
-# This action works with pull requests and pushes
 on: [push, pull_request]
 
 jobs:
@@ -10,13 +9,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          # Make sure the actual branch is checked out when running on pull requests
-          ref: ${{ github.head_ref }}
 
       - name: Prettier CI
         uses: creyD/prettier_action@v4.0
         with:
-          # This part is also where you can pass other options, for example:
-          prettier_options: --write **/*.{js,jsx,ts,tsx,css,mjs}
-          commit_message: '🍧 chore(prettier): Made the Code Pretty!'
+          prettier_options: --write **/*.{js,jsx,ts,tsx,mjs}
+          commit_message: "🍧 chore(ci): Sweeten the Code Layout!"
