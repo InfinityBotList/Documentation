@@ -1,6 +1,6 @@
 <h2 align='center'>
   <a href="https://docs.botlist.site">
-    <img src="https://docs.botlist.site/Bannerz.png" />
+    <img src="https://docs.botlist.site/85FC9DAF-60F4-4839-8BB8-31DAA7BE3303.png" />
   </a>
   <br> 
 </h2>
