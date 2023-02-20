@@ -34,7 +34,7 @@ export default {
         content="Documentation for Infinity Bot List"
       />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image" content="/Bannerz.png" />
+      <meta name="twitter:image" content="/85FC9DAF-60F4-4839-8BB8-31DAA7BE3303.png" />
       <meta name="twitter:site:domain" content="docs.infinitybots.gg" />
       <meta name="twitter:url" content="https://docs.infinitybots.gg" />
       <meta name="og:title" content="Infinity Bots | Documentation" />
