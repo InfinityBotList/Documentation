@@ -35,7 +35,7 @@ export default {
         content="Documentation for Infinity Bot List"
       />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image" content="/Bannerz.png" />
+      <meta name="twitter:image" content="/85FC9DAF-60F4-4839-8BB8-31DAA7BE3303.png" />
       <meta name="twitter:site:domain" content="docs.infinitybots.gg" />
       <meta name="twitter:url" content="https://docs.infinitybots.gg" />
       <meta name="og:title" content="Infinity Bots | Documentation" />
@@ -116,7 +116,7 @@ export default {
         frontMatter.description || 'Documentation for Infinity Bot List',
       openGraph: {
         images: [
-          { url: frontMatter.image || 'https://docs.botlist.site/Bannerz.png' }
+          { url: frontMatter.image || 'https://docs.botlist.site/85FC9DAF-60F4-4839-8BB8-31DAA7BE3303.png' }
         ]
       },
       titleTemplate: '%s – Infinity Docs',
