@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useConfig } from 'nextra-theme-docs'
 
 export default {
+
   project: {
     link: 'https://github.com/InfinityBotList',
   },
@@ -60,6 +61,9 @@ export default {
       </span>
       <span style={{ marginLeft: '.4em', fontWeight: 800, color: '#8A6AFD' }}>
         Docs
+      </span>
+      <span className="ml-2 py-0 px-1 font-mono text-xs no-underline w-full text-gray-600 bg-black border border-transparent border-gray-200 rounded-md bg-opacity-5 dark:bg-white dark:text-white dark:border-gray-700 dark:bg-opacity-5">
+        v6.0.0
       </span>
     </>
   ),

@@ -1,0 +1,85 @@
+import HTTPHeader from '../../../components/HTTPHeader';
+import { Tab, Tabs } from 'nextra-theme-docs'
+
+# Announcements
+These API endpoints are related to our announcements system
+
+---
+
+## Get Announcements
+
+<HTTPHeader type="GET" path="/announcements" />
+
+
+> This endpoint will return a list of announcements. User authentication is optional and using it will show user targetted announcements.
+
+### Request
+- **API Server:** https://spider.infintybots.gg
+- **Authentication:** Required (None Applied)
+ 
+### Response (200)
+
+<Tabs items={['Example', 'Schema']}>
+  <Tab>
+    ```json
+    {
+        "announcements": [
+            {
+                "author": "string",
+                "content": "string",
+                "id": "string",
+                "itag": null
+                "last_modified": "1970-01-01T00:00:00.000Z",
+                "status": "string",
+                "target": null
+                "targetted": false,
+                "title": "string"
+            }
+        ]
+    }
+    ```
+  </Tab>
+  <Tab>
+    ```json
+    {
+        announcements: [{
+            author: string
+            content: string
+            id: string
+            itag: any
+            last_modified: date-time
+            status: string
+            target: any
+            targetted: boolean
+            title: string
+        }]
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Response (400)
+
+<Tabs items={['Example', 'Schema']}>
+  <Tab>
+    ```json
+    {
+        "context": null
+        "error": false,
+        "message": "string"
+    }
+    ```
+  </Tab>
+  <Tab>
+    ```json
+    {
+        context: any
+        error: boolean
+        message: string
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
