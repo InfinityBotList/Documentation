@@ -6,7 +6,7 @@ import { Bleed } from 'nextra-theme-docs'
 
 # Widgets
 
-Embeds or "Widgets" are images that can display your bots stats on your own website! On this page we will tell you how to access and customise them.
+Embeds or "Widgets" are images that can display your bots stats on your own website! On this page we will tell you how to access and customize them.
 
 ---
 
@@ -14,24 +14,56 @@ Embeds or "Widgets" are images that can display your bots stats on your own webs
 
 To use the embed, you can insert the following link as an IFrame or Image into your website / documentation.
 
-- Iframe
+### Iframe
 
 ```markdown
-<iframe src="https://infinitybotlist.com/bots/:botID/widget?size=small"/>
+<iframe src="https://widgets.infinitybots.gg/bot/:botID/?size=small"/>
 ```
 
-- Markdown
+### Markdown
 
 ```markdown
-![](https://infinitybotlist.com/bots/:botID/widget?size=small)
+![](https://widgets.infinitybots.gg/bot/:botID/?size=small)
+```
+
+### Image Tag
+```markdown
+<img src="https://infinitybots.gg/bots/<%= bots.botID %>/widget?size=large"></img> 
 ```
 
 ---
 
-## Preview IFrame
+## Customization
+Customize your widget using our provided query params
 
-![Sample Widget](https://infinitybotlist.com/bots/815553000470478850/widget?size=large)
+| Query    |      Description         |  Example                                                      |
+|----------|:------------------------:|--------------------------------------------------------------:|
+| size     |  The size of the widget  | widgets.infinitybots.gg/bot/187636089073172481?size=large     |
+| theme    |  The widget background   | widgets.infinitybots.gg/bot/187636089073172481?theme=light    |
+| accent   | The widget accent color  | widgets.infinitybots.gg/bot/187636089073172481?accent=violet  |
+
+### Available Query Params
+
+| Param    |      Description         |  Options                                            |
+|----------|:------------------------:|----------------------------------------------------:|
+| size     |  The size of the widget  | small, large                                        |
+| theme    |  The widget background   | dark, light                                         |
+| accent   | The widget accent color  | violet, blue, rose, emerald, amber, summer          |
+
+> NOTE: We have a default widget available by providing no query
+
+> NOTE: All query params are optional (example: you can use theme without any other query's)
 
 ---
 
-In this example we used just a plain embed which defaults to .svg, We also used a Iframe to display the example
+## Widget Preview
+
+- Here we used the markdown embed with the following params 
+> ```?size=large&theme=light&accent=violet```
+
+- The full url would look like this:
+>```https://widgets.infinitybots.gg/bot/infinity-bot-list/?size=large&theme=light&accent=violet```
+
+![Sample Widget](https://widgets.infinitybots.gg/bot/infinity-bot-list/?size=large&theme=light&accent=violet)
+
+---
