@@ -4,67 +4,148 @@ title: Webhooks
 
 # Webhooks
 
-Instead of requesting our API to see the who has and has not voted for your bot, you can now use webhooks!
-Webhooks will send a `POST` request to a URL of your choice when your bot has been voted for.
+Infinity Bot List supports a webhooks system (that is still a constant work in progress however) for getting real-time updates and information about an [entity](./entity).
 
-_Discord Webhooks used to be well-supported but is no longer supported anymore due to ratelimits._
+This includes, but is not limited to:
+
+- Bot votes
+- New bot reviews
+- Updates on bot reviews
+- Edits to a team (name and avatar only at this time)
+
+More events will be added. Lots of our time was spent ensuring a sane webhooks experience for our users.
 
 ---
 
 ## Custom Webhooks
 
-For Users with a Custom Webhook Server you can start by setting up your webhook URL in the edit form of your bot on our site, it can be found at `https://infinitybotlist.com/bots/:botID/edit` under the `Custom Webhook Url` section of the edit form. Once you've entered the URL you want the webhook to be sent to and provide a secret, you're all set! If you need help setting up custom webhooks inside of your bot or web server don't be afraid to ask in our [discord server](https://infinitybotlist.com/join) in the `》api-support` channel.
+If you wish to use a custom webhook server you can start by setting up your webhook URL under Settings > Webhooks for the entity. Enter the URL you want the webhook to be sent to and provide a secret, you're all set! If you need help setting up custom webhooks inside of your bot or web server don't be afraid to ask in our [discord server](https://infinitybotlist.com/join) in the `》api-support` channel.
 
----
+### Parsing webhooks
 
----
+# Parsing webhooks
 
-## Security
+So now that you have a webhook added to the site. You now need to parse the webhook. In order to successfully parse a webhook sent by Infinity Bot List, here is the algorithm you must implement. *Note that all examples are provided in JS as of right now*.
 
-1. On the edit page you can see another input for `Secret` or `Secret Auth`. Here you can provide a shared secret that you can check for on the server side.
-2. To verify requests are coming from us, look for the value in the `Authorization` header and make sure it is the same as the value you provided in the form.
+1a. Check the protocol version:
+	- The current protocol version is `splashtail`
+	- Check the `X-Webhook-Protocol` header and ensure that it is equal to the current protocol version
 
----
+```js
+  const supportedProtocol = 'splashtail'
+  if (req.headers["x-webhook-protocol"] != supportedProtocol) {
+    reply.status(403).send({
+      message: "Invalid protocol version!",
+      error: true,
+    });
+    return;
+  }
+```
 
-## Acknowledgement
+1b. A nonce is used to randomize the signature for retries. Ensure a nonce exists by checking the header's existence:
 
-- Webhooks sent by `infinitybotlist.com` **must** be acknowledged with a `2XX` status response (like 200) in order to be considered successful.
+```js
+  if (!req.headers["x-webhook-nonce"]) {
+    reply.status(403).send({
+      message: "No nonce provided?",
+      error: true,
+    });
+    return;
+  }
+```
+
+2. Next calculate the expected signature
+	- To do so, you must first get the body of the request
+	- Then use HMAC-SHA512 with the webhook secret as key and the body as the request body to get the ``signedBody``. Note that the format/digest should be ``hex``
+	- Then use HMAC-SHA512 with the nonce as the key and the signed body as the message to get the expected signature. Note that the format/digest should be ``hex``
+
+```js
+  let body: string = req.body;
+
+  if (!body) {
+    reply.status(400).send({
+      message: "No request body provided?",
+      error: true,
+    });
+    return;
+  }
+
+  // Create hmac 512 hash
+  let signedBody = crypto
+    .createHmac("sha512", webhookSecret)
+    .update(body)
+    .digest("hex");
+
+  // Create the actual signature using x-webhook-nonce by performing a second hmac
+  let nonce = req.headers["x-webhook-nonce"].toString();
+  let expectedTok = crypto
+    .createHmac("sha512", nonce)
+    .update(signedBody)
+    .digest("hex");
+```
+
+3. Compare this value with the ``X-Webhook-Signature`` header
+	- If they are equal, the request is valid and you can continue processing it
+	- If they are not equal, the request is invalid and you should return a 403 status code
+
+```js
+  if (req.headers["x-webhook-signature"] != expectedTok) {
+    console.log(
+      `Expected: ${expectedTok} Got: ${req.headers["x-webhook-signature"]}`
+    );
+    reply.status(403).send({
+      message: "Invalid signature",
+    });
+    return;
+  }
+```
+
+4. Next decrypt the request body. This is both an additional security to prevent sensitive information from being leaked and also ensures that the webhook has been implemented with a decent level of security on your server
+	- First hash the concatenation of the webhook secret and the nonce using SHA256
+	- Then read the body as a hex string and decrypt it using AES-256-GCM with the hashed secret as the key
+
+```js
+	// sha256 on key
+	let hashedKey = crypto
+	.createHash("sha256")
+	.update(webhookSecret + nonce)
+	.digest();
+
+	let enc = Buffer.from(body, "hex");
+	const tag = enc.subarray(enc.length - tagLength, enc.length);
+	const iv = enc.subarray(0, ivLength);
+	const toDecrypt = enc.subarray(ivLength, enc.length - tag.length);
+	const decipher = crypto.createDecipheriv("aes-256-gcm", hashedKey, iv);
+	decipher.setAuthTag(tag);
+	const res = Buffer.concat([decipher.update(toDecrypt), decipher.final()]);
+
+	// Parse the decrypted body
+	let data = JSON.parse(res.toString("utf-8"));
+
+	if (data.created_at == undefined) {
+	  reply.status(400).send({
+	  message: "Invalid body",
+	  error: true,
+	});
+	return;
+```
+
+### Acknowledgement
+
+- Webhooks sent by Infinity Bot List **must** be acknowledged with a `2XX` status response (like 200 or 204) in order to be considered successful.
 - Unsuccessful webhooks will trigger a [retry](#retrial).
 
 Official `infinitybotlist.com` libraries will be setup to acknowledge webhooks automatically in the near future.
 
----
-
-## Timeouts
+### Timeouts
 
 Responses to webhooks must be returned within 5 seconds, otherwise they are considered a timeout and will be queued for a retry (if available).
 
----
-
-## Retrial
+### Retrial
 
 - Webhook requests that time out or return a `5XX` status response (like 500) will be retried up to 10 times.
 - Errors resulting with status `4XX` (like 404, 403 or 400) will not be retried as these are considered user errors.
 
----
+### Data Format
 
-## Data Format
-
-The format of the data your webhook URL will receive in a `POST` request.
-
-#### Bot Webhooks
-
-| Param     | Description                                                               |
-| --------- | ------------------------------------------------------------------------- |
-| botID     | The Discord ID (Snowflake) for the Bot who Recieved a Vote                |
-| userID    | The Discord ID (Snowflake) of the User who Voted                          |
-| userName  | The Username of the User who Voted                                        |
-| count     | The Bots new Vote Count                                                   |
-| timestamp | The Date and Time of the Vote                                             |
-| type      | The TYPE of Request (Should always be "VOTE" or "TEST" for test Requests) |
-
----
-
-## More Events
-
-Looking for webhook events other than votes? They will be available in a Future Update.
+See [webhook events](https://spider.infinitybots.gg/docs#tag--Webhooks) for the exact data format to expect for a custom webhook
