@@ -1,5 +1,4 @@
 import { Icon } from "@iconify-icon/react"
-import copy from 'copy-to-clipboard';
 import Head from 'next/head';
 import Link from 'next/link';
 import toast, { Toaster } from 'react-hot-toast';
@@ -38,10 +37,6 @@ const features = [
 ];
 
 export default function Page() {
-  const onClick = () => {
-    copy('npm install million');
-    toast.success('Copied to clipboard');
-  };
   return <>
     <Head>
       <title>Infinity</title>
