@@ -13,13 +13,34 @@ This includes, but is not limited to:
 - Updates on bot reviews
 - Edits to a team (name and avatar only at this time)
 
-More events will be added. Lots of our time was spent ensuring a sane webhooks experience for our users.
+**Note:** More events will be added. Lots of our time was spent ensuring a sane webhooks experience for our users.
+
+If you need help setting up custom webhooks inside of your bot or web server don't be afraid to ask in our [discord server](https://infinitybotlist.com/join) in the `》api-support` channel.
 
 ---
 
-## Custom Webhooks
+## IBL Funnels
 
-If you wish to use a custom webhook server you can start by setting up your webhook URL under Settings > Webhooks for the entity. Enter the URL you want the webhook to be sent to and provide a secret, you're all set! If you need help setting up custom webhooks inside of your bot or web server don't be afraid to ask in our [discord server](https://infinitybotlist.com/join) in the `》api-support` channel.
+To make setting up custom webhooks easier, Infinity Bot List provides `IBL Funnels` which is a (locally-ran/self-hosted) service that automatically handles the authentication bits for you, then sends them to either a/an (firewall'd) local webserver of your choice OR to a script or executable that you define. This means, you just need to handle the raw event (as JSON) with all the authentication handled for you!
+
+You will need iblcli to be downloaded first. Download this from [seedguide](https://infinitybots.gg/help/contribute/seedguide) for your OS and CPU architecture. *Ignore the seeding stuff as that is irrelevant and will be removed once our Developer Docs are a bit better.*
+
+Next, run `ibl funnel setup`, login when prompted by following the onscreen prompts and opening the OAuth2 URL when prompted. After logging in, set a port that the webhook will listen on and the domain at which Infinity Bot List will POST to the webhook by following the onscreen instructions and selecting the correct options. 
+
+Ladtly, create the funnels for your entity and you're all set! For forwards to, provide a script/executable that IBL should call with the webhook data in the ``DATA`` environment variable or a (local/on-server) webserver that `iblcli` will send the data to after authentication. 
+
+Note that `iblcli` will handle all the painful stuff like setting up the webhook config on the site using the P`atch Webhook` API for the tntity. It will also generate a random webhook secret as well.
+
+Once you're ready, run `ibl funnel start` and voila, everything should just work!!!
+
+
+---
+
+## Manual setup
+
+If you wish to use a custom webhook server without using IBL Funnels, you can!
+
+Firstly, start by setting up the webhook URL by either going to Settings > Webhooks for the entity OR by using the `Patch Webhook` API endpoint for the entity in question directly.
 
 ### Authenticating webhooks
 
@@ -32,14 +53,13 @@ So now that you have a webhook added to the site. You now need to authorize/auth
 	- Check the `X-Webhook-Protocol` header and ensure that it is equal to the current protocol version
 
 ```js
-  const supportedProtocol = 'splashtail'
-  if (req.headers["x-webhook-protocol"] != supportedProtocol) {
-    reply.status(403).send({
-      message: "Invalid protocol version!",
-      error: true,
-    });
-    return;
-  }
+const supportedProtocol = 'splashtail'
+if (req.headers["x-webhook-protocol"] != supportedProtocol) {
+  reply.status(403).send({
+    message: "Invalid protocol version!",
+  });
+  return;
+}
 ```
 
 1b. A nonce is used to randomize the signature for retries. Ensure a nonce exists by checking the header's existence:
@@ -48,7 +68,6 @@ So now that you have a webhook added to the site. You now need to authorize/auth
   if (!req.headers["x-webhook-nonce"]) {
     reply.status(403).send({
       message: "No nonce provided?",
-      error: true,
     });
     return;
   }
@@ -65,7 +84,6 @@ So now that you have a webhook added to the site. You now need to authorize/auth
   if (!body) {
     reply.status(400).send({
       message: "No request body provided?",
-      error: true,
     });
     return;
   }
@@ -123,14 +141,18 @@ const res = Buffer.concat([decipher.update(toDecrypt), decipher.final()]);
 let data = JSON.parse(res.toString("utf-8"));
 ```
 
+---
+
+### Timeout
+
+The timeout applied to webhooks is not stable or defined here in order to protect against Denial Of Service attacks by slow clients. However, the maximum response time of your server in accepting, authenticating and performing (initial) processing of an event should be a maximum of 10 seconds under peak load and in general should be lower than that.
+
+If you need to perform a long-running task upon recieving an event, you may need to use a background task (goroutines, asyncio tasks, etc) to meet this.
+
 ### Acknowledgement
 
 - Webhooks sent by Infinity Bot List **must** be acknowledged with a `2XX` status response (like 200 or 204) in order to be considered successful.
 - Unsuccessful webhooks will trigger a [retry](#retrial).
-
-### Timeouts
-
-Responses to webhooks must be returned within 5 seconds, otherwise they are considered a timeout and will be queued for a retry (if available).
 
 ### Retrials and deletions
 
@@ -140,10 +162,6 @@ Responses to webhooks must be returned within 5 seconds, otherwise they are cons
 - **Webhooks that respond with a `2XX` status code to a 'bad intent' webhook will automatically deleted for not properly handling authentication**
 - *The above list is non-exhaustive*
 
-### Webhook deletion
-
-- 
-
 ### Data Format
 
-See [webhook events](https://spider.infinitybots.gg/docs#tag--Webhooks) for the exact data format to expect for a custom webhook
+See [webhook events](https://spider.infinitybots.gg/docs#tag--Webhooks) for the exact data format to expect for a custom webhook.
