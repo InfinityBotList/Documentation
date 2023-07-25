@@ -8,12 +8,12 @@
     "title": "Website",
     "type": "menu",
     "items": {
-      "mistystar": {
-        "title": "v3.0.0",
+      "prod": {
+        "title": "Production",
         "href": "https://infinitybots.gg"
       },
-      "reedwhisker": {
-        "title": "v4.0.0",
+      "staging": {
+        "title": "Staging",
         "href": "https://reedwhisker.infinitybots.gg"
       }
     }
@@ -23,12 +23,12 @@
     "type": "menu",
     "items": {
       "current": {
-        "title": "v3.0.0",
-        "href": "//docs/api/about"
+        "title": "Production",
+        "href": "https://spider.infinitybots.gg/docs"
       },
       "spider": {
-        "title": "v4.0.0",
-        "href": "https://spider.infinitybots.gg/docs"
+        "title": "Staging",
+        "href": "https://spider-staging.infinitybots.gg/docs"
       }
     }
   },
