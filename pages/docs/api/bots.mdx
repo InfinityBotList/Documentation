@@ -34,6 +34,8 @@ import { Callout } from 'nextra-theme-docs'
 | users      | `uint64`   | Amount of users the bot has.     | ❌       |
 | shard_list | `[]uint64` | Shard list of bot.               | ❌       |
 
+### Example
+
 ```py
 import requests
 req = requests.post(f"{API_URL}/bots/stats", json={"servers": 4000, "shards": 2}, headers={"Authorization": f"{TOKEN}"})
