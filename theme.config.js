@@ -7,7 +7,7 @@ export default {
     link: 'https://github.com/InfinityBotList',
   },
   chat: {
-    link: 'https://infinitybots.gg/discord'
+    link: 'https://infinitybots.gg/redirect/discord'
   },
   navigation: {
     prev: true,
