@@ -21,11 +21,11 @@ More events will be added. Lots of our time was spent ensuring a sane webhooks e
 
 If you wish to use a custom webhook server you can start by setting up your webhook URL under Settings > Webhooks for the entity. Enter the URL you want the webhook to be sent to and provide a secret, you're all set! If you need help setting up custom webhooks inside of your bot or web server don't be afraid to ask in our [discord server](https://infinitybotlist.com/join) in the `》api-support` channel.
 
-### Parsing webhooks
+### Authenticating webhooks
 
-# Parsing webhooks
+So now that you have a webhook added to the site. You now need to authorize/authenticate the webhook and decrypt the data in order to handle it. **Note that Infinity Bot List WILL, from time to time, randomly send 'bad intent webhooks' to you to ensure that you are correctly handling security. Any webhooks that cannot be correctly parsed MUST be responded with a status code of 403 or the webhook WILL be automatically deleted during a 'bad intent' test run**
 
-So now that you have a webhook added to the site. You now need to parse the webhook. In order to successfully parse a webhook sent by Infinity Bot List, here is the algorithm you must implement. *Note that all examples are provided in JS as of right now*.
+*Note that all examples are provided in JS as of right now*.
 
 1a. Check the protocol version:
 	- The current protocol version is `splashtail`
@@ -128,16 +128,21 @@ let data = JSON.parse(res.toString("utf-8"));
 - Webhooks sent by Infinity Bot List **must** be acknowledged with a `2XX` status response (like 200 or 204) in order to be considered successful.
 - Unsuccessful webhooks will trigger a [retry](#retrial).
 
-Official `infinitybotlist.com` libraries will be setup to acknowledge webhooks automatically in the near future.
-
 ### Timeouts
 
 Responses to webhooks must be returned within 5 seconds, otherwise they are considered a timeout and will be queued for a retry (if available).
 
-### Retrial
+### Retrials and deletions
 
 - Webhook requests that time out or return a `5XX` status response (like 500) will be retried up to 10 times.
-- Errors resulting with status `4XX` (like 404, 403 or 400) will not be retried as these are considered user errors.
+- Errors resulting with status `4XX` (400, 422 etc.) will not be retried for obvious reasons.
+- **Webhooks resulting in a status code of 404 or 410 will be automatically deleted, regardless of whether it is a 'bad intent' webhook or not**
+- **Webhooks that respond with a `2XX` status code to a 'bad intent' webhook will automatically deleted for not properly handling authentication**
+- *The above list is non-exhaustive*
+
+### Webhook deletion
+
+- 
 
 ### Data Format
 
