@@ -11,21 +11,23 @@ import { Callout } from 'nextra-theme-docs'
   All endpoints use [Dynamic Ratelimits](/docs/resources/ratelimits). A list of all endpoints can be found [here](https://spider.infinitybots.gg/docs)
 </Callout> 
 
----
-
 **The below contains only the basic and common actions required by bot developers. A full list of endpoints provided by the Infinity Bot List API can be found [here](https://spider.infinitybots.gg/docs#tag--Bots)
+
+---
 
 ## Post Bot Stats
 
 <HTTPHeader type="POST" path="bots/stats" />
 
-### Post Headers
+### Headers
 
 | Field         | Type     | Description                        | Required |
 | ------------- | -------- | ---------------------------------- | -------- |
 | Authorization | `string` | The Bots `Infinity Bots API Token` | ✔️       |
 
-### Post Body
+### Body
+
+_Not all fields are documented here, see [here](https://spider.infinitybots.gg/docs#post-/bots/stats) for the full list_
 
 | Field      | Type       | Description                      | Required |
 | ---------- | ---------- | -------------------------------- | -------- |
@@ -34,10 +36,46 @@ import { Callout } from 'nextra-theme-docs'
 | users      | `uint64`   | Amount of users the bot has.     | ❌       |
 | shard_list | `[]uint64` | Shard list of bot.               | ❌       |
 
+### Response
+
+This endpoint returns a `204 No Content` with no response body. As such, you should not attempt to process any response body if a success code is returned 
+
 ### Example
 
 ```py
 import requests
 req = requests.post(f"{API_URL}/bots/stats", json={"servers": 4000, "shards": 2}, headers={"Authorization": f"{TOKEN}"})
-print(req.json())
+
+if req.status >= 200 and req.status < 400:
+  print("SUCCESS!")
+
+print("ERROR:", req.json())
 ```
+
+---
+
+## Get User Votes
+
+<HTTPHeader type="GET" path="users/:userID/bots/:botID/votes" />
+
+### Headers
+
+| Field         | Type     | Description                        | Required |
+| ------------- | -------- | ---------------------------------- | -------- |
+| Authorization | `string` | The Bots `Infinity Bots API Token` | ✔️        |
+
+### Body
+
+This endpoint does not accept a request body. Any bodies sent will either be ignored or will result in error. The sending of request body to endpoints that do not support it is *undefined behaviour* that may change at random without notice.
+
+### Response
+
+_Not all fields are documented here, see [here](https://spider.infinitybots.gg/docs#get-/users/-uid-/bots/-bid-/votes) for the full list_
+
+| Response       | Description                                                                                         |
+| -------------- | --------------------------------------------------------------------------------------------------- |
+| ts             | The timestamps of a users votes. This is to avoid you having to store these yourself on your own DB |
+| last_vote_time | The time you last voted at                                                                          |
+| has_voted      | If the user has Voted Recently (True or False)                                                      |
+| premium_bot    | Whether the bot has premium or not                                                                  |
+| vote_info      | Some vote-related context such as `vote_time` etc.                                                  |
