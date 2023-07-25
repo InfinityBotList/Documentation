@@ -22,11 +22,11 @@
     "title": "Documentation",
     "type": "menu",
     "items": {
-      "current": {
+      "prod": {
         "title": "Production",
         "href": "https://spider.infinitybots.gg/docs"
       },
-      "spider": {
+      "staging": {
         "title": "Staging",
         "href": "https://spider-staging.infinitybots.gg/docs"
       }
