@@ -2,24 +2,8 @@ import HTTPHeader from '../../../components/HTTPHeader';
 
 # Votes
 
-We offer a custom Voting System as a way for users to support their favorite bots.
+We offer a custom Voting System as a way for users to support their favorite [entities](./entity).
 
-Users can currently vote for a bot every 12 hours, with the exception of double vote time periods and premium bots (4 hours cooldown at this time)
+Users can currently vote for a entity every 12 hours, with the exception of double vote time periods, with 6 hour cooldown periods, and premium entities, if the entity supports premium, with a 4 hours cooldown for these cases.
 
-_Not all endpoints are documented here. See [here](https://spider.infinitybots.gg/docs#tag--Votes) for more accurate documentation regarding our voting system_
-
-## Get User Votes
-
-<HTTPHeader type="GET" path="users/:userID/bots/:botID/votes" />
-
-### Response
-
-_Not all keys are documented here, see [here](https://spider.infinitybots.gg/docs#get-/users/-uid-/bots/-bid-/votes) for the full list_
-
-| Response       | Description                                                                                         |
-| -------------- | --------------------------------------------------------------------------------------------------- |
-| ts             | The timestamps of a users votes. This is to avoid you having to store these yourself on your own DB |
-| last_vote_time | The time you last voted at                                                                          |
-| has_voted      | If the user has Voted Recently (True or False)                                                      |
-| premium_bot    | Whether the bot has premium or not                                                                  |
-| vote_info      | Some vote-related context such as `vote_time` etc.                                                  |
+See [our docs](https://spider.infinitybots.gg/docs#tag--Votes) for more accurate documentation regarding the endpoints provided by the voting API
