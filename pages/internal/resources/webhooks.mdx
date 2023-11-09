@@ -1,0 +1,169 @@
+---
+title: Webhooks
+---
+
+# Webhooks
+
+**Users who just want to log events to discord should note that Infinity Bot List supports Discord Webhooks for all events. It's actually mandatory for a webhook event to also have an associated discord webhook in order to be considered an event!**
+
+Infinity Bot List supports a webhooks system (that is still a constant work in progress however) for getting real-time updates and information about an [entity](./entity).
+
+This includes, but is not limited to:
+
+- Bot votes
+- New bot reviews
+- Updates on bot reviews
+- Edits to a team (name and avatar only at this time)
+
+**Note:** More events will be added. Lots of our time was spent ensuring a sane webhooks experience for our users.
+
+If you need help setting up custom webhooks inside of your bot or web server don't be afraid to ask in our [discord server](https://infinitybotlist.com/join) in the `》api-support` channel.
+
+---
+
+## IBL Funnels
+
+To make setting up custom webhooks easier, Infinity Bot List provides `IBL Funnels` which is a (locally-ran/self-hosted) service that automatically handles the authentication bits for you, then sends them to either a/an (firewall'd) local webserver of your choice OR to a script or executable that you define. This means, you just need to handle the raw event (as JSON) with all the authentication handled for you!
+
+You will need iblcli to be downloaded first. Download this from [seedguide](https://infinitybots.gg/help/contribute/seedguide) for your OS and CPU architecture. *Ignore the seeding stuff as that is irrelevant and will be removed once our Developer Docs are a bit better.*
+
+Next, run `ibl funnel setup`, login when prompted by following the onscreen prompts and opening the OAuth2 URL when prompted. After logging in, set a port that the webhook will listen on and the domain at which Infinity Bot List will POST to the webhook by following the onscreen instructions and selecting the correct options. 
+
+Ladtly, create the funnels for your entity and you're all set! For forwards to, provide a script/executable that IBL should call with the webhook data in the ``DATA`` environment variable or a (local/on-server) webserver that `iblcli` will send the data to after authentication. 
+
+Note that `iblcli` will handle all the painful stuff like setting up the webhook config on the site using the P`atch Webhook` API for the tntity. It will also generate a random webhook secret as well.
+
+Once you're ready, run `ibl funnel start` and voila, everything should just work!!!
+
+
+---
+
+## Manual setup
+
+If you wish to use a custom webhook server without using IBL Funnels, you can!
+
+Firstly, start by setting up the webhook URL by either going to Settings > Webhooks for the entity OR by using the `Patch Webhook` API endpoint for the entity in question directly.
+
+### Authenticating webhooks
+
+So now that you have a webhook added to the site. You now need to authorize/authenticate the webhook and decrypt the data in order to handle it. **Note that Infinity Bot List WILL, from time to time, randomly send 'bad intent webhooks' to you to ensure that you are correctly handling security. Any webhooks that cannot be correctly parsed MUST be responded with a status code of 403 or the webhook WILL be automatically deleted during a 'bad intent' test run**
+
+*Note that all examples are provided in JS as of right now*.
+
+1a. Check the protocol version:
+	- The current protocol version is `splashtail`
+	- Check the `X-Webhook-Protocol` header and ensure that it is equal to the current protocol version
+
+```js
+const supportedProtocol = 'splashtail'
+if (req.headers["x-webhook-protocol"] != supportedProtocol) {
+  reply.status(403).send({
+    message: "Invalid protocol version!",
+  });
+  return;
+}
+```
+
+1b. A nonce is used to randomize the signature for retries. Ensure a nonce exists by checking the header's existence:
+
+```js
+  if (!req.headers["x-webhook-nonce"]) {
+    reply.status(403).send({
+      message: "No nonce provided?",
+    });
+    return;
+  }
+```
+
+2. Next calculate the expected signature
+	- To do so, you must first get the body of the request
+	- Then use HMAC-SHA512 with the webhook secret as key and the body as the request body to get the ``signedBody``. Note that the format/digest should be ``hex``
+	- Then use HMAC-SHA512 with the nonce as the key and the signed body as the message to get the expected signature. Note that the format/digest should be ``hex``
+
+```js
+  let body: string = req.body;
+
+  if (!body) {
+    reply.status(400).send({
+      message: "No request body provided?",
+    });
+    return;
+  }
+
+  // Create hmac 512 hash
+  let signedBody = crypto
+    .createHmac("sha512", webhookSecret)
+    .update(body)
+    .digest("hex");
+
+  // Create the actual signature using x-webhook-nonce by performing a second hmac
+  let nonce = req.headers["x-webhook-nonce"].toString();
+  let expectedTok = crypto
+    .createHmac("sha512", nonce)
+    .update(signedBody)
+    .digest("hex");
+```
+
+3. Compare this value with the ``X-Webhook-Signature`` header
+	- If they are equal, the request is valid and you can continue processing it
+	- If they are not equal, the request is invalid and you should return a 403 status code
+
+```js
+  if (req.headers["x-webhook-signature"] != expectedTok) {
+    console.log(
+      `Expected: ${expectedTok} Got: ${req.headers["x-webhook-signature"]}`
+    );
+    reply.status(403).send({
+      message: "Invalid signature",
+    });
+    return;
+  }
+```
+
+4. Next decrypt the request body. This is both an additional security to prevent sensitive information from being leaked and also ensures that the webhook has been implemented with a decent level of security on your server
+	- First hash the concatenation of the webhook secret and the nonce using SHA256
+	- Then read the body as a hex string and decrypt it using AES-256-GCM with the hashed secret as the key
+
+```js
+// sha256 on key
+let hashedKey = crypto
+  .createHash("sha256")
+  .update(webhookSecret + nonce)
+  .digest();
+
+let enc = Buffer.from(body, "hex");
+const tag = enc.subarray(enc.length - tagLength, enc.length);
+const iv = enc.subarray(0, ivLength);
+const toDecrypt = enc.subarray(ivLength, enc.length - tag.length);
+const decipher = crypto.createDecipheriv("aes-256-gcm", hashedKey, iv);
+decipher.setAuthTag(tag);
+const res = Buffer.concat([decipher.update(toDecrypt), decipher.final()]);
+
+// Parse the decrypted body
+let data = JSON.parse(res.toString("utf-8"));
+```
+
+---
+
+### Timeout
+
+The timeout applied to webhooks is not stable or defined here in order to protect against Denial Of Service attacks by slow clients. However, the maximum response time of your server in accepting, authenticating and performing (initial) processing of an event should be a maximum of 10 seconds under peak load and in general should be lower than that.
+
+If you need to perform a long-running task upon recieving an event, you may need to use a background task (goroutines, asyncio tasks, etc) to meet this.
+
+### Acknowledgement
+
+- Webhooks sent by Infinity Bot List **must** be acknowledged with a `2XX` status response (like 200 or 204) in order to be considered successful.
+- Unsuccessful webhooks will trigger a [retry](#retrial).
+
+### Retrials and deletions
+
+- Webhook requests that time out or return a `5XX` status response (like 500) will be retried up to 10 times.
+- Errors resulting with status `4XX` (400, 422 etc.) will not be retried for obvious reasons.
+- **Webhooks resulting in a status code of 404 or 410 will be automatically deleted, regardless of whether it is a 'bad intent' webhook or not**
+- **Webhooks that respond with a `2XX` status code to a 'bad intent' webhook will automatically deleted for not properly handling authentication**
+- *The above list is non-exhaustive*
+
+### Data Format
+
+See [webhook events](https://spider.infinitybots.gg/docs#tag--Webhooks) for the exact data format to expect for a custom webhook.

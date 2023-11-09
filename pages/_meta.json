@@ -1,0 +1,46 @@
+{
+    "index": {
+        "title": "Home",
+        "type": "page",
+        "display": "hidden",
+        "href": "/"
+    },
+    "contributors": {
+        "title": "Contributors",
+        "type": "page"
+    },
+    "internal": {
+        "title": "Internal Docs",
+        "type": "page"
+    },
+
+    "external": {
+        "title": "External Docs",
+        "type": "menu",
+        "items": {
+            "prod": {
+                "title": "Popplio",
+                "href": "https://spider.infinitybots.gg/docs"
+            },
+            "staging": {
+                "title": "Spider",
+                "href": "https://spider-staging.infinitybots.gg/docs"
+            }
+        }
+    },
+
+    "websites": {
+        "title": "Websites",
+        "type": "menu",
+        "items": {
+          "prod": {
+            "title": "Production",
+            "href": "https://infinitybots.gg"
+          },
+          "staging": {
+            "title": "Staging",
+            "href": "https://reedwhisker.infinitybots.gg"
+          }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+# Introduction
+
+Hey there 👋, welcome to our Official Documentation!
+
+---
+
+## Getting Help
+
+If you need some help or think you have spotted a problem with our API or any of our services in general you can talk to us in our
+[`#api-support`](https://discord.com/channels/758641373074423808/826363644295643136) channel in our [discord server](https://infinitybots.gg/redirect/discord).
+
+---
+
+## API Intro
+
+Infinity uses a REST API for most of its functionality. This API is used by our website and our bots for a variety of things such as
+fetching information, checking permissions, handling notifications and so much more.
+
+**For a more up-to-date api reference, see [spider.infinitybots.gg/docs](https://spider.infinitybotlist.com). Please check this as well when developing against the API. Many endpoints on v4 especially are quite complex and nested and can't be documented easily here.**
+
+#### Base Url
+
+[spider.infinitybots.gg](https://spider.infinitybots.gg) (v4 API)
+
+The older `api.infinitybotlist.com` base URL will continue to work but it is recommended for newer bots to use `spider.infinitybots.gg`
+
+---
+
+## Authorization
+
+To access our API you need to authorize yourself or in this case your bot, this can be done by using your Infinity API Token which can be found in the `Owner Section` of your bots page.
+
+![Owner Section Screenshot](https://media.discordapp.net/attachments/832011830238248961/871632845821591562/image0.png)
+
+Authentication is performed with the `authorization` HTTP header:
+
+```
+  Authorization: "your-secret-token"
+```

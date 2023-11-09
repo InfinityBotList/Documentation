@@ -1,0 +1,51 @@
+---
+title: API Usage
+---
+
+# API Usage
+
+If you prefer to interact with our raw API instead of using a Third Party Module
+you can follow the usage guides and examples below which should be more then enough to
+get you started xD
+
+---
+
+## Javascript Usage
+
+```jsx
+const fetch = require('node-fetch');
+fetch(`https://spider.infinitybots.gg/bots/stats`, {
+  method: 'POST',
+  headers: {
+    "Authorization": 'api-key-here',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    servers: 100,
+    shards: 69,
+  }),
+}).then(async (res) => console.log(await res.json()));
+```
+
+---
+
+## Python Usage
+
+```python
+import aiohttp
+
+# In a async function
+async def post_stats():
+    async with aiohttp.ClientSession() as sess:
+        headers= {
+            "Authorization": "Your api token",
+        }
+        json={
+            "servers": len(bot.guilds) or 0, # Change this if you use custom clustering
+            "shards": bot.shard_count or 0   # Change this if you use custom clustering
+        }
+        async with sess.post(f"https://spider.infinitybots.gg/bots/stats", headers=headers, json=json) as res:
+            # Do something with the response. EX
+            # if res.status == 200:
+            # ...
+```

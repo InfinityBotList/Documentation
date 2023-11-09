@@ -1,0 +1,128 @@
+---
+title: Java
+---
+
+# IBL4J
+
+Java Wrapper used for interacting with the Infinity Bots List API.
+
+<div>
+  <p>
+    <a href="https://jitpack.io/#Zone-Infinity/IBL4J/">
+      <img
+        alt="JitPack"
+        src="https://img.shields.io/jitpack/v/github/Zone-Infinity/IBL4J?logo=VERSION&style=for-the-badge"
+      />
+    </a>
+  </p>
+</div>
+
+## Installation
+
+- Replace `VERSION` by the [latest release](https://github.com/Zone-Infinity/IBL4J/releases/)
+
+### Maven
+
+```xml
+<repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+</repository>
+```
+
+```xml
+<dependency>
+    <groupId>com.github.Zone-Infinity.IBL4J</groupId>
+    <artifactId>ibl4j</artifactId>
+    <version>VERSION</version>
+</dependency>
+
+<dependency>
+    <groupId>com.github.Zone-Infinity.IBL4J</groupId>
+    <artifactId>ibl-library</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+### Gradle
+
+```xml
+maven { url 'https://jitpack.io' }
+```
+
+```xml
+implementation 'com.github.Zone-Infinity:IBL4J:VERSION'
+```
+
+## Post Method
+
+```java
+// jda is your JDA instance
+IBLDiscordClient iblDiscordClient = new JDAClient(jda);
+
+IBL ibl = new IBLBuilder(iblDiscordClient, "IBL_TOKEN");
+
+// Post only server count
+ibl.postServerCount(response -> {
+    System.out.println(response.getMessage());
+});
+
+// Post server count and shard count
+ibl.postStats(response -> {
+    System.out.println(response.getMessage());
+});
+```
+
+## Auto Posting
+
+```java
+// Post every 5 minutes
+ibl.autoPostStats(Executors.newSingleThreadExecutor(), response -> {
+    System.out.println(response.getMessage());
+});
+
+// Post every `delay` in `timeunit`
+ibl.autoPostStats(Executors.newSingleThreadExecutor(), 5, TimeUnit.MINUTES, response -> {
+    System.out.println(response.getMessage());
+});
+```
+
+## Get method
+
+### Get your bot data
+
+```java
+// bot is me.infinity.ibl.data.entities.IBLBot instance.
+ibl.getStats(bot -> {
+    // Votes
+    System.out.println(bot.getAnalytics().getVotes());
+    // Short Description
+    System.out.println(bot.getShortDescription());
+});
+```
+
+### Get any Bots data
+
+```java
+IBL.getBotStats("BOT_ID", bot -> {
+    if(!bot.exists()) System.out.println("Bot doesn't exist on the list");
+
+    // Prefix
+    System.out.println(bot.getPrefix());
+    // Github Link
+    System.out.println(bot.getLinks().getGithub());
+});
+```
+
+### Get any Users data
+
+```java
+IBL.getUserInfo("USER_ID", user -> {
+    if(!user.exists()) System.out.println("User doesn't exist on the list");
+
+    // Is a staff or not
+    System.out.println(user.isStaff());
+    // User's Github
+    System.out.println(user.getLinks().getGithub());
+});
+```

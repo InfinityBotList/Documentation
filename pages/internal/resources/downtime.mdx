@@ -1,0 +1,25 @@
+---
+title: Downtime
+---
+
+import { Callout } from 'nextra-theme-docs'
+
+<Callout type="warning" emoji="⚠️">
+  Downtime Detection is currently not yet working and is still a work-in-progress
+</Callout>
+
+# Downtime Handler
+
+Our API implements a process of checking a bots uptime in a periodic basis, however this is not finalized yet and so is not yet documented here.
+
+The percentage system however is finalized as the below formula (in JavaScript)
+
+```jsx
+let percent = (bot.uptime / bot.total_uptime) * 100;
+```
+
+---
+
+## Exceeding the Downtime Percentage
+
+While Infinity Bot List *used* to delete bots for having too low an uptime, this is currently no longer the case and is being rethought
